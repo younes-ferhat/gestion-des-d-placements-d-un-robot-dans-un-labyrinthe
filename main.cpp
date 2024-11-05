@@ -4,6 +4,6 @@
 int main() 
 {   
     std::cout << "moh chikor " ;
-    std::cout<< "teste ";
+    std::cout<< "t";
     return 0;
 }
