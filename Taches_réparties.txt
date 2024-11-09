@@ -1,0 +1,59 @@
+- Classe Terrain
+
+    Représente le terrain du labyrinthe sous forme de tableau.
+    Attributs :
+        grid : matrice pour stocker les cases (vide, mur, départ, arrivée).
+        start : coordonnées de la case de départ.
+        end : coordonnées de la case d'arrivée.
+    Méthodes :
+        loadFromFile(fichier) et saveToFile(fichier) pour charger et enregistrer le terrain.
+        isObstacle(x, y) pour vérifier si une case contient un mur
+
+
+
+
+-Classe Robot
+
+    Représente le robot et sa position/direction sur le terrain.
+    Attributs :
+        x, y : position actuelle du robot.
+        direction : direction actuelle (Nord, Est, Sud, Ouest).
+        Liste des observateurs pour notifier des déplacements.
+
+    Méthodes :
+        moveForward(), turnLeft(), turnRight() pour contrôler les mouvements.
+        detectObstacle() pour détecter les obstacles autour.
+        addObserver(observer) et notifyObservers() pour gérer les observateurs.
+
+
+Classe RobotObserver (interface) A REVOIR !!!!!
+
+    Interface pour les observateurs de robot.
+    Méthode virtuelle pure update(x, y, direction) qui sera appelée à chaque déplacement du robot.
+
+
+
+Classes d'algorithme de sortie (MainDroiteAlgorithm et PledgeAlgorithm)
+
+    Classe MainDroiteAlgorithm
+        Implémente l'algorithme de sortie du labyrinthe en suivant un mur à droite.
+        Méthode principale execute() pour diriger le robot jusqu'à la sortie.
+    Classe PledgeAlgorithm
+        Implémente l'algorithme de Pledge.
+        Méthode principale execute() pour diriger le robot en respectant les règles de l'algorithme.
+
+
+
+Classe DeplacementStatistiques (observateur concret)
+
+    Hérite de RobotObserver.
+    Stocke et affiche les statistiques des déplacements du robot (nombre de mouvements, tournants, etc.).
+
+- Bouthayna: Classe Robot
+- Mohamed : Classe Terrain
+- Younes: Classe MainDroiteAlgorithm
+- Amayas: Classe PledgeAlgorithm
+
+A revoir les classes DeplacementStatistiques et Classe RobotObserver (interface)
+
+
