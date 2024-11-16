@@ -1,38 +1,25 @@
 #include <iostream>
+#include <vector>
+
+#include "C:\Users\youne\Desktop\prjct labyrinth\gestion-des-d-placements-d-un-robot-dans-un-labyrinthe\headers\mainDroite.h"
+using namespace std;
+
 
 int main() 
 {   
-    std::cout << "show the labyrinth "<<std::endl ;
-    int m=9;
-    int n=7;
-    for (int i = 0; i <8 ; i++) {
-        for (int j = 0; j < 9; j++) {
-         if (i == 0 && j == 1) {
-                std::cout << "  ";
-            }
-            // Ajouter la sortie (droite de la dernière ligne)
-            else if (i == n - 1 && j == m - 2) {
-                std::cout << "  ";
-            }
-            // Bords extérieurs
-            else if (i == 0 || i == n - 1 || j == 0 || j == m - 1) {
-                std::cout << "* ";
-            }
-            // Mur tous les deux blocs pour former des "salles"
-            else if (i % 2 == 0 && j % 2 == 0) {
-                std::cout << "* ";
-            }
-            // Ajouter un mur entre certaines "salles" pour plus de structure
-            else if (i % 2 == 0 || j % 2 == 0) {
-                std::cout << "* ";
-            }
-            // Espaces vides pour les chemins
-            else {
-                std::cout << "  ";
-            }
-        }
-        std::cout <<std:: endl;
-    }
+   std::vector<std::vector<char>> labyrinthe = {
+        {'X', 'X', 'X', 'X', 'X', 'X', 'X'},
+        {'X', '.', '.', '.', 'X', '.', 'X'},
+        {'X', '.', 'X', '.', 'X', '.', 'X'},
+        {'X', '.', 'X', '.', '.', '.', 'X'},
+        {'X', '.', 'X', 'X', 'X', 'X', 'X'},
+        {'X', '.', '.', '.', '.', '.', 'X'},
+        {'X', 'X', 'X', 'X', 'X', 'X', 'X'}
+    };
+
+    // Créer l'instance de mainDroite pour résoudre le labyrinthe
+    mainDroite robotSolver(labyrinthe, 1, 1, 'R'); // Position (1,1), orienté à droite ('R')
+    robotSolver.resoudre();
 
     return 0;
 }
