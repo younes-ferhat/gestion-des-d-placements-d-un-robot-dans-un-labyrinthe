@@ -3,7 +3,8 @@
 
 #include <vector>
 #include <string>
-#include "Point.h"
+#include "../headers/Point.h"
+#include "../headers/Terrain.h"
 
 class Terrain {
 private:

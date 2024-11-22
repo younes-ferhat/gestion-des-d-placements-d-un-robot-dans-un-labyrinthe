@@ -1,5 +1,5 @@
 #include "../headers/pledge.h"
-pledge::pledge( const robot &robot , const terrain &terrain):d_robot {robot} , d_terrain {terrain}
+pledge::pledge( const Robot &robot , const Terrain &terrain):d_robot {robot} , d_terrain {terrain}
 {
     //ctor
 }
@@ -13,14 +13,14 @@ void pledge::resoudre()
 {
    const int tournerADroite {-1} ;
    const int tournerAGauche {1}; 
-   const int decompteChangement {0}; 
+   int decompteChangement {0}; 
 
-  while ( )
+  while ( true)
   { 
     //instruction 1 avancer tout droit jusqu'a au mur 
-    while (!d_robot.obtacleDevant())
+    while (!d_robot.detectObstacle(d_terrain))
     {
-        d_robot.avance() ;
+        d_robot.deplaceDevant() ;
     }
     //instruction 2
     //tourner à gauche pour longer le mur à droite ;
@@ -29,14 +29,14 @@ void pledge::resoudre()
     
      while ( decompteChangement!= 0 )
      {
-        if (d_robot.obtacleDevant() )
+        if (d_robot.detectObstacle(d_terrain) )
         {
             d_robot.tourneGauche();
             decompteChangement+=tournerAGauche;
         }
         else 
         {
-            d_robot.tourneDroite() ; 
+            d_robot.tourneDroite(); 
             decompteChangement+=tournerADroite;
             
         }

@@ -1,5 +1,5 @@
-#include "Robot.h"
-#include "Terrain.h"
+#include "../headers/Robot.h"
+#include "../headers/Terrain.h"
 
 Robot::Robot(Point startPosition, Direction startDirection)
     : d_position(startPosition), d_direction(startDirection) {}

@@ -3,8 +3,8 @@
 
 #include <string>
 #include <iostream>
-#include "Point.h"
-#include "Terrain.h"
+#include "../headers/Point.h"
+#include "../headers/Terrain.h"
 
 class Robot {
 public:

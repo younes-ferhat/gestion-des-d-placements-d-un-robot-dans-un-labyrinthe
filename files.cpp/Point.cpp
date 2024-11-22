@@ -1,4 +1,4 @@
-#include "Point.h"
+#include "../headers/Point.h"
 
 // Constructeur
 Point::Point(int x, int y) : d_x(x), d_y(y) {}

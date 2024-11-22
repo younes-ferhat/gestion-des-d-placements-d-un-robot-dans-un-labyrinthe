@@ -1,20 +1,20 @@
 #ifndef PLEDGE_H
 #define PLEDGE_H
+#include "../headers/Terrain.h"
+#include "../headers/Robot.h"
 
-class robot ;
-class terrain ;
 class pledge
 {
     public:
-        pledge(const robot &robot , const terrain &terrain);
+        pledge(const Robot &robot , const Terrain &terrain);
         void resoudre() ; 
        ~pledge();
 
     protected:
 
     private:
-     robot d_robot ; 
-     terrain d_terrain ; 
+     Robot d_robot ; 
+     Terrain d_terrain ; 
 };
 
 #endif // PLEDGE_H
