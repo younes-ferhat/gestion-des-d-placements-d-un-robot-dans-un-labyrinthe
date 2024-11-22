@@ -8,9 +8,9 @@ int main()
 {   
     
 
-   std::cout<<"hello world !";
-   Terrain t {20,20};
+   std::cout<<"hello world !"<<std::endl;
+   Terrain t {};
+   t.chargerDepuisFichier("./terrain/labyrinthe.txt");
    t.afficherModeTexteSimple();
-   t.afficherModeTexteAmeliore2();
     return 0;
 }

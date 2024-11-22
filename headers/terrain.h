@@ -8,9 +8,9 @@
 
 class Terrain {
 private:
-    std::vector<std::vector<char>> grille;  // Représente le labyrinthe
-    int largeur;  // Largeur du terrain
-    int hauteur;  // Hauteur du terrain
+    std::vector<std::vector<bool>> d_grille;  // Représente le labyrinthe
+    int d_largeur;  // Largeur du terrain
+    int d_hauteur;  // Hauteur du terrain
     Point caseDepart;  // Coordonnées de la case de départ
     Point caseArrivee; // Coordonnées de la case d'arrivée
 

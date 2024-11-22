@@ -5,38 +5,43 @@
 
 using namespace std;
 
-Terrain::Terrain() : largeur(0), hauteur(0) {}
+Terrain::Terrain() : d_grille {} {}
 
-Terrain::Terrain(int largeur, int hauteur) : largeur(largeur), hauteur(hauteur) {
-    grille.resize(hauteur, vector<char>(largeur, '.'));
+Terrain::Terrain(int d_largeur, int d_hauteur) : d_largeur(d_largeur), d_hauteur(d_hauteur) {
+    d_grille.resize(d_hauteur, vector<bool>(d_largeur, '.'));
 }
 
 bool Terrain::chargerDepuisFichier(const string& nomFichier) {
     ifstream fichier(nomFichier);
     if (!fichier.is_open()) {
-        cerr << "Erreur : impossible d'ouvrir le fichier " << nomFichier << endl;
+        std::cout << "Erreur : impossible d'ouvrir le fichier " << nomFichier << endl;
         return false;
     }
 
-    fichier >> hauteur >> largeur;
-    grille.resize(hauteur, vector<char>(largeur));
+    fichier >> d_hauteur >> d_largeur;
+    d_grille.resize(d_hauteur, vector<bool>(d_largeur));
+    bool c;
+    for (int i = 0; i < d_hauteur; ++i) {
+        for (int j = 0; j < d_largeur; ++j) {
+            fichier>>c; 
+            d_grille[i][j]=c;
 
-    for (int i = 0; i < hauteur; ++i) {
-        for (int j = 0; j < largeur; ++j) {
-            fichier >> grille[i][j];
-            if (grille[i][j] == 'S') {
-              caseDepart = Point(i, j);} // Conversion en Point
+           /* fichier >> d_grille[i][j];
+            if (d_grille[i][j] == 'S') {
+              caseDepart = Point(i, j);}
+               // Conversion en Point
 
-           else if (grille[i][j] == 'E') {
-              caseArrivee = Point(i, j); // Conversion en Point
+           else if (d_grille[i][j] == 'E') {
+              caseArrivee = Point(i, j); // Conversion en Point */
 }
 
         }
+        fichier.close();
+    return true;
+
     }
 
-    fichier.close();
-    return true;
-}
+    
 
 bool Terrain::sauvegarderDansFichier(const string& nomFichier) const {
     ofstream fichier(nomFichier);
@@ -45,8 +50,8 @@ bool Terrain::sauvegarderDansFichier(const string& nomFichier) const {
         return false;
     }
 
-    fichier << hauteur << " " << largeur << endl;
-    for (const auto& ligne : grille) {
+    fichier << d_hauteur << " " << d_largeur << endl;
+    for (const auto& ligne : d_grille) {
         for (char c : ligne) {
             fichier << c;
         }
@@ -60,8 +65,8 @@ bool Terrain::sauvegarderDansFichier(const string& nomFichier) const {
 char Terrain::getCase(const Point& position) const {
     int x = position.getX();
     int y = position.getY();
-    if (x >= 0 && x < hauteur && y >= 0 && y < largeur) {
-        return grille[x][y];
+    if (x >= 0 && x < d_hauteur && y >= 0 && y < d_largeur) {
+        return d_grille[x][y];
     }
     return '#'; // Retourne un mur si hors limites
 }
@@ -69,8 +74,8 @@ char Terrain::getCase(const Point& position) const {
 void Terrain::setCase(const Point& position, char valeur) {
     int x = position.getX();
     int y = position.getY();
-    if (x >= 0 && x < hauteur && y >= 0 && y < largeur) {
-        grille[x][y] = valeur;
+    if (x >= 0 && x < d_hauteur && y >= 0 && y < d_largeur) {
+        d_grille[x][y] = valeur;
     }
 }
 
@@ -94,9 +99,18 @@ Point Terrain::getCaseArrivee() const {
 }
 
 void Terrain::afficherModeTexteSimple() const {
-    for (const auto& ligne : grille) {
+    for (const auto& ligne : d_grille) {
         for (char c : ligne) {
-            cout << c;
+            if (c)
+            {
+            std::cout<<"X "; 
+            }
+            else 
+            {
+               std::cout << ". ";
+            }
+          
+            
         }
         cout << endl;
     }
@@ -104,10 +118,10 @@ void Terrain::afficherModeTexteSimple() const {
 
 void Terrain::afficherModeTexteAmeliore1() const {
     cout << "+";
-    for (int i = 0; i < largeur; ++i) cout << "-";
+    for (int i = 0; i < d_largeur; ++i) cout << "-";
     cout << "+" << endl;
 
-    for (const auto& ligne : grille) {
+    for (const auto& ligne : d_grille) {
         cout << "|";
         for (char c : ligne) {
             if (c == '#') cout << "#";
@@ -117,16 +131,16 @@ void Terrain::afficherModeTexteAmeliore1() const {
     }
 
     cout << "+";
-    for (int i = 0; i < largeur; ++i) cout << "-";
+    for (int i = 0; i < d_largeur; ++i) cout << "-";
     cout << "+" << endl;
 }
 
 void Terrain::afficherModeTexteAmeliore2() const {
     cout << "┏";
-    for (int i = 0; i < largeur; ++i) cout << "━";
+    for (int i = 0; i < d_largeur; ++i) cout << "━";
     cout << "┓" << endl;
 
-    for (const auto& ligne : grille) {
+    for (const auto& ligne : d_grille) {
         cout << "┃";
         for (char c : ligne) {
             if (c == '#') cout << "█";
@@ -138,12 +152,12 @@ void Terrain::afficherModeTexteAmeliore2() const {
     }
 
     cout << "┗";
-    for (int i = 0; i < largeur; ++i) cout << "━";
+    for (int i = 0; i < d_largeur; ++i) cout << "━";
     cout << "┛" << endl;
 }
 
 bool Terrain::estAccessible(const Point& position) const {
     int x = position.getX();
     int y = position.getY();
-    return x >= 0 && x < hauteur && y >= 0 && y < largeur && grille[x][y] != '#';
+    return x >= 0 && x < d_hauteur && y >= 0 && y < d_largeur && d_grille[x][y] != '#';
 }
