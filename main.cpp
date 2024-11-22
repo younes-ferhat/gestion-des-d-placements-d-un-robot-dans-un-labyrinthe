@@ -9,7 +9,8 @@ int main()
     
 
    std::cout<<"hello world !";
-  
+  Terrain t{20,20};
+  t.afficherModeTexteSimple();
   
     return 0;
 }

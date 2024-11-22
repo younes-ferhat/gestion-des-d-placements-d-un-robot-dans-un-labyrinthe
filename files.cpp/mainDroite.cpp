@@ -1,4 +1,4 @@
-#include "MainDroite.h"
+#include "../headers/mainDroite.h"
 #include <iostream>
 
 MainDroite::MainDroite(const Robot& robot, const Terrain& terrain)
