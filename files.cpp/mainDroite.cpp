@@ -23,11 +23,11 @@ void MainDroite::resoudre() {
 
     while (!estSorti) {
         // Vérifie si le robot est arrivé à la case d'arrivée
-        if (d_robot.getPosition() == d_terrain.getCaseArrivee()) {
+        /*if (d_robot == d_terrain.getCaseArrivee()) {
             estSorti = true;
             std::cout << "Le robot a trouvé la sortie !" << std::endl;
             return;
-        }
+        }*/
 
         // Suivre la main droite
         tournerDroite(); // Essayer de tourner à droite
