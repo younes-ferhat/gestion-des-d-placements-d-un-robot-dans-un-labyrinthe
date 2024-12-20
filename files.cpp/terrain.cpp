@@ -1,17 +1,23 @@
-#include "../headers/Terrain.h"
+#include "../headers/terrain.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
 
 using namespace std;
 
-Terrain::Terrain() : d_grille {} {}
+terrain::terrain() : d_grille {} {}
 
-Terrain::Terrain(int d_largeur, int d_hauteur) : d_largeur(d_largeur), d_hauteur(d_hauteur) {
+terrain::terrain(int d_largeur, int d_hauteur) : d_largeur(d_largeur), d_hauteur(d_hauteur) {
     d_grille.resize(d_hauteur, vector<bool>(d_largeur, '.'));
 }
+  int terrain:: getHauteur() const{
+    return d_hauteur;
+  }
+  int terrain:: getLargeur()const{
+        return d_largeur;
+    }
 
-bool Terrain::chargerDepuisFichier(const string& nomFichier) {
+bool terrain::chargerDepuisFichier(const string& nomFichier) {
     ifstream fichier(nomFichier);
     if (!fichier.is_open()) {
         std::cout << "Erreur : impossible d'ouvrir le fichier " << nomFichier << endl;
@@ -43,7 +49,7 @@ bool Terrain::chargerDepuisFichier(const string& nomFichier) {
 
     
 
-bool Terrain::sauvegarderDansFichier(const string& nomFichier) const {
+bool terrain::sauvegarderDansFichier(const string& nomFichier) const {
     ofstream fichier(nomFichier);
     if (!fichier.is_open()) {
         cerr << "Erreur : impossible d'écrire dans le fichier " << nomFichier << endl;
@@ -62,7 +68,7 @@ bool Terrain::sauvegarderDansFichier(const string& nomFichier) const {
     return true;
 }
 
-char Terrain::getCase(const Point& position) const {
+char terrain::getCase(const Point& position) const {
     int x = position.getX();
     int y = position.getY();
     if (x >= 0 && x < d_hauteur && y >= 0 && y < d_largeur) {
@@ -71,7 +77,7 @@ char Terrain::getCase(const Point& position) const {
     return '#'; // Retourne un mur si hors limites
 }
 
-void Terrain::setCase(const Point& position, char valeur) {
+void terrain::setCase(const Point& position, char valeur) {
     int x = position.getX();
     int y = position.getY();
     if (x >= 0 && x < d_hauteur && y >= 0 && y < d_largeur) {
@@ -79,26 +85,26 @@ void Terrain::setCase(const Point& position, char valeur) {
     }
 }
 
-void Terrain::setCaseDepart(const Point& position) {
+void terrain::setCaseDepart(const Point& position) {
     caseDepart = position;
     setCase(position, 'S');
 }
 
-void Terrain::setCaseArrivee(const Point& position) {
+void terrain::setCaseArrivee(const Point& position) {
     caseArrivee = position;
     setCase(position, 'E');
 }
 
 
-Point Terrain::getCaseDepart() const {
+Point terrain::getCaseDepart() const {
     return caseDepart;
 }
 
-Point Terrain::getCaseArrivee() const {
+Point terrain::getCaseArrivee() const {
     return caseArrivee;
 }
 
-void Terrain::afficherModeTexteSimple() const {
+void terrain::afficherModeTexteSimple() const {
     for (const auto& ligne : d_grille) {
         for (char c : ligne) {
             if (c)
@@ -116,7 +122,7 @@ void Terrain::afficherModeTexteSimple() const {
     }
 }
 
-void Terrain::afficherModeTexteAmeliore1() const {
+void terrain::afficherModeTexteAmeliore1() const {
     cout << "+";
     for (int i = 0; i < d_largeur; ++i) cout << "-";
     cout << "+" << endl;
@@ -135,7 +141,7 @@ void Terrain::afficherModeTexteAmeliore1() const {
     cout << "+" << endl;
 }
 
-void Terrain::afficherModeTexteAmeliore2() const {
+void terrain::afficherModeTexteAmeliore2() const {
     cout << "┏";
     for (int i = 0; i < d_largeur; ++i) cout << "━";
     cout << "┓" << endl;
@@ -156,7 +162,7 @@ void Terrain::afficherModeTexteAmeliore2() const {
     cout << "┛" << endl;
 }
 
-bool Terrain::estAccessible(const Point& position) const {
+bool terrain::estAccessible(const Point& position) const {
     int x = position.getX();
     int y = position.getY();
     return x >= 0 && x < d_hauteur && y >= 0 && y < d_largeur && d_grille[x][y] != '#';

@@ -3,8 +3,8 @@
 
 #include <string>
 #include <iostream>
-#include "../headers/Point.h"
-#include "../headers/Terrain.h"
+#include "Point.h"
+#include"C:\Users\amine\Desktop\Projet_lab\gestion-des-d-placements-d-un-robot-dans-un-labyrinthe\headers\terrain.h"
 
 class Robot {
 public:
@@ -16,6 +16,19 @@ private:
 
 public:
     Robot(Point startPosition, Direction startDirection);
+    // getters de la position et la direction 
+    Point getPosition() const;
+    Direction getDirection() const;
+
+
+    // detecter obstacle a gauche et a droite
+    bool detectObstacleGauche(const terrain& Terrain) const;
+    bool detectObstacleDroite(const terrain& Terrain) const;
+    // dessin du robot selon sa position
+    void dessinerRobot(const terrain& Terrain) const;
+
+
+
 
     // Déplacement vers l'avant
     void deplaceDevant();
@@ -30,7 +43,7 @@ public:
     void demiTour();
 
     // Détection d'obstacle
-    bool detectObstacle(const Terrain& terrain);
+    bool detectObstacle(const terrain& Terrain);
 
     // Méthode pour afficher les déplacements
     void notifyMovement(const std::string& action);

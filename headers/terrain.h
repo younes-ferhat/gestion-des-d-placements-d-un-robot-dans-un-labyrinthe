@@ -4,9 +4,9 @@
 #include <vector>
 #include <string>
 #include "../headers/Point.h"
-#include "../headers/Terrain.h"
+//#include "../headers/Terrain.h"
 
-class Terrain {
+class terrain {
 private:
     std::vector<std::vector<bool>> d_grille;  // Représente le labyrinthe
     int d_largeur;  // Largeur du terrain
@@ -16,10 +16,12 @@ private:
 
 public:
     // Constructeur par défaut
-    Terrain();
+    terrain();
 
     // Constructeur avec dimensions
-    Terrain(int largeur, int hauteur);
+    terrain(int largeur, int hauteur);
+    int getHauteur() const;
+    int getLargeur()const;
 
     // Charger un terrain depuis un fichier
     bool chargerDepuisFichier(const std::string& nomFichier);

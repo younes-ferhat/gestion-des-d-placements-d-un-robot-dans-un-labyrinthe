@@ -1,5 +1,5 @@
 #include "../headers/pledge.h"
-pledge::pledge( const Robot &robot , const Terrain &terrain):d_robot {robot} , d_terrain {terrain}
+pledge::pledge( const Robot &robot , const terrain &Terrain):d_robot {robot} , d_terrain {Terrain}
 {
     //ctor
 }

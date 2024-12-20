@@ -1,8 +1,16 @@
-#include "../headers/Robot.h"
-#include "../headers/Terrain.h"
+#include "Robot.h"
+#include "C:\Users\amine\Desktop\Projet_lab\gestion-des-d-placements-d-un-robot-dans-un-labyrinthe\headers\terrain.h"
 
 Robot::Robot(Point startPosition, Direction startDirection)
     : d_position(startPosition), d_direction(startDirection) {}
+
+Point Robot:: getPosition() const{
+    return d_position;
+}
+Robot::Direction Robot:: getDirection() const {
+    return d_direction;
+}
+
 
 void Robot::deplaceDevant() {
     switch (d_direction) {
@@ -29,7 +37,7 @@ void Robot::demiTour() {
     notifyMovement("fait un demi-tour");
 }
 
-bool Robot::detectObstacle(const Terrain& terrain) {
+bool Robot::detectObstacle(const terrain& Terrain) {
     Point nextPosition = d_position; // Copie de la position actuelle
     switch (d_direction) {
         case NORD: nextPosition.move(0, -1); break;
@@ -37,8 +45,77 @@ bool Robot::detectObstacle(const Terrain& terrain) {
         case SUD: nextPosition.move(0, 1); break;
         case OUEST: nextPosition.move(-1, 0); break;
     }
-    return !terrain.estAccessible(nextPosition);
+    return !Terrain.estAccessible(nextPosition);
 }
+bool Robot::detectObstacleGauche(const terrain& Terrain) const {
+    // Calculer la position à gauche du robot en fonction de sa direction actuelle
+    Point positionGauche = d_position;
+    switch (d_direction) {
+        case NORD: positionGauche.move(-1, 0); break; // Vers l'ouest
+        case EST:  positionGauche.move(0, -1); break; // Vers le nord
+        case SUD:  positionGauche.move(1, 0); break;  // Vers l'est
+        case OUEST: positionGauche.move(0, 1); break; // Vers le sud
+    }
+
+    // Vérifier si la position est accessible
+    return !Terrain.estAccessible(positionGauche);
+}
+bool Robot::detectObstacleDroite(const terrain& Terrain) const {
+    // Calculer la position à droite du robot en fonction de sa direction actuelle
+    Point positionDroite = d_position;
+    switch (d_direction) {
+        case NORD: positionDroite.move(1, 0); break;  // Vers l'est
+        case EST:  positionDroite.move(0, 1); break;  // Vers le sud
+        case SUD:  positionDroite.move(-1, 0); break; // Vers l'ouest
+        case OUEST: positionDroite.move(0, -1); break; // Vers le nord
+    }
+
+    // Vérifier si la position est accessible
+    return !Terrain.estAccessible(positionDroite);
+}
+void Robot::dessinerRobot(const terrain& Terrain) const {
+    // Dimensions du terrain
+    int hauteur = Terrain.getHauteur();
+    int largeur = Terrain.getLargeur();
+
+    // Créer une copie temporaire de la grille
+    std::vector<std::vector<char>> grille(hauteur, std::vector<char>(largeur, '.'));
+
+    // Remplir la copie avec les obstacles du terrain
+    for (int i = 0; i < hauteur; ++i) {
+        for (int j = 0; j < largeur; ++j) {
+            if (!Terrain.estAccessible(Point(i, j))) {
+                grille[i][j] = '#'; // Murs
+            }
+        }
+    }
+
+    // Ajouter les points de départ et d'arrivée
+    Point caseDepart = Terrain.getCaseDepart();
+    Point caseArrivee = Terrain.getCaseArrivee();
+    grille[caseDepart.getY()][caseDepart.getX()] = 'S';
+    grille[caseArrivee.getY()][caseArrivee.getX()] = 'E';
+
+    // Ajouter le robot à sa position actuelle
+    char symbole;
+    switch (d_direction) {
+        case NORD: symbole = '^'; break;
+        case EST: symbole = '>'; break;
+        case SUD: symbole = 'v'; break;
+        case OUEST: symbole = '<'; break;
+    }
+    grille[d_position.getY()][d_position.getX()] = symbole;
+
+    // Afficher la grille
+    for (const auto& ligne : grille) {
+        for (char c : ligne) {
+            std::cout << c << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+
 
 
 void Robot::notifyMovement(const std::string& action) {
@@ -48,7 +125,7 @@ void Robot::notifyMovement(const std::string& action) {
         case NORD: std::cout << "Nord"; break;
         case EST: std::cout << "Est"; break;
         case SUD: std::cout << "Sud"; break;
-        case OUEST: std::cout << "Ouest"; break;
+        case OUEST: std::cout <<"Ouest"; break;
     }
     std::cout << "." << std::endl;
 }
