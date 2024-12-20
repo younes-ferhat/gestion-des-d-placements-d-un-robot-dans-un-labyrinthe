@@ -4,8 +4,7 @@
 #include <string>
 #include <iostream>
 #include "Point.h"
-#include"C:\Users\amine\Desktop\Projet_lab\gestion-des-d-placements-d-un-robot-dans-un-labyrinthe\headers\terrain.h"
-
+#include "../headers/terrain.h"
 class Robot {
 public:
     enum Direction { NORD, EST, SUD, OUEST };

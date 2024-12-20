@@ -1,5 +1,5 @@
-#include "Robot.h"
-#include "C:\Users\amine\Desktop\Projet_lab\gestion-des-d-placements-d-un-robot-dans-un-labyrinthe\headers\terrain.h"
+#include "../headers/Robot.h"
+#include "../headers/terrain.h"
 
 Robot::Robot(Point startPosition, Direction startDirection)
     : d_position(startPosition), d_direction(startDirection) {}

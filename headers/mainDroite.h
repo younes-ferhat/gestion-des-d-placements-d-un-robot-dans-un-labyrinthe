@@ -7,7 +7,7 @@
 class MainDroite {
 private:
     Robot d_robot;            // Robot utilisé pour le labyrinthe
-    const Terrain& d_terrain; // Référence au terrain
+    const terrain& d_terrain; // Référence au terrain
     bool estSorti;            // Indique si le robot est sorti
 
     void tournerDroite();     // Gérer la rotation à droite
@@ -15,7 +15,7 @@ private:
     void avancer();           // Déplacer le robot en avant
 
 public:
-    MainDroite(const Robot& robot, const Terrain& terrain);
+    MainDroite(const Robot& robot, const terrain& terrain);
     void resoudre();          // Algorithme de la main droite
     bool sortieAtteinte() const; // Vérifie si la sortie est atteinte
 };

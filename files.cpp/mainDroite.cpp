@@ -1,7 +1,7 @@
 #include "../headers/mainDroite.h"
 #include <iostream>
 
-MainDroite::MainDroite(const Robot& robot, const Terrain& terrain)
+MainDroite::MainDroite(const Robot& robot, const terrain& terrain)
     : d_robot(robot), d_terrain(terrain), estSorti(false) {}
 
 void MainDroite::tournerDroite() {
