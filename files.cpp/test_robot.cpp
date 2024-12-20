@@ -11,7 +11,7 @@ TEST_SUITE("Tests de la classe Robot") {
         Point startPos(1, 1);
         Robot robot(startPos, Robot::NORD);
         CHECK(robot.getPosition() == startPos);
-        CHECK(robot.getDirection() == Robot::NORD);
+        CHECK(robot.getDirection()== Robot::NORD);
     }
 
     TEST_CASE("Test du déplacement devant sans obstacle") {
