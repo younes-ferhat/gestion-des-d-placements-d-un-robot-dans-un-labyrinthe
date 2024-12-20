@@ -1,4 +1,4 @@
-#include "Point.h"
+#include "../headers/Point.h"
 
 // Constructeur
 Point::Point(int x, int y) : d_x(x), d_y(y) {}
@@ -26,3 +26,7 @@ void Point::move(int x, int y) {
     d_x += x;
     d_y += y;
 }
+bool Point::operator==(const Point& p) const
+    {
+      return (d_x == p.d_x) && (d_y == p.d_y);
+    }

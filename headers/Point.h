@@ -19,6 +19,7 @@ public:
 
     // Méthode pour déplacer le Point
     void move(int x, int y);
+    bool operator==(const Point& p)   const;
 };
 
 #endif
