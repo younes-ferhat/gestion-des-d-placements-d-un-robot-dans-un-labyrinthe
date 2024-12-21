@@ -30,7 +30,7 @@ public:
     bool sauvegarderDansFichier(const std::string& nomFichier) const;
 
     // Accéder ou modifier une case
-    char getCase(const Point& position) const;
+    bool getCase(const Point& position) const;
     void setCase(const Point& position, char valeur);
 
     // Définir les cases de départ et d'arrivée
