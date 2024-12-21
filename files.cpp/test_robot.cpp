@@ -1,4 +1,4 @@
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+
 #define DOCTEST_CONFIG_NO_MULTITHREADING
 #include "../headers/doctest.h"
 #include "../headers/Point.h"
@@ -58,18 +58,20 @@ TEST_SUITE("Tests de la classe Robot") {
     }
 
     TEST_CASE("Test du déplacement devant avec terrain") {
-        Point startPos(1, 1);
-        terrain Terrain(5, 5); // Terrain de 5x5
-        Robot robot(startPos, Robot::NORD);
+        Point startPos(1,1);
+       terrain Terrain {}; 
+       Terrain.chargerDepuisFichier("../terrain/labyrinthe.txt");// Terrain de 5x5
+        Robot robot(startPos, Robot::EST);
 
         robot.deplaceDevant();
-        CHECK(robot.getPosition() == Point(1, 0));
-       // CHECK(Terrain.getCase(robot.getPosition()) == '.');  // Terrain dégagé
+        CHECK(robot.getPosition() == Point{2,1});
+    
+        CHECK(Terrain.getCase(robot.getPosition()) == false);  // Terrain dégagé
 
         robot.tourneDroite();
         robot.deplaceDevant(); // vers la droite
-        CHECK(robot.getPosition() == Point(2, 0));
-       // CHECK(Terrain.getCase(robot.getPosition()) == '.');  // Terrain dégagé
+        CHECK(robot.getPosition() == Point{2,2});
+       CHECK(Terrain.getCase(robot.getPosition()) == false);  // Terrain dégagé
     }
 
     TEST_CASE("Test de la détection d'obstacle devant") {
