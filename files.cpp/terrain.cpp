@@ -8,7 +8,7 @@ using namespace std;
 terrain::terrain() : d_grille{} {}
 
 terrain::terrain(int d_largeur, int d_hauteur) : d_largeur(d_largeur), d_hauteur(d_hauteur) {
-    d_grille.resize(d_hauteur, vector<bool>(d_largeur, '.'));
+    d_grille.resize(d_hauteur, vector<bool>(d_largeur, false));
 }
 
 int terrain::getHauteur() const {
@@ -63,21 +63,22 @@ bool terrain::sauvegarderDansFichier(const string& nomFichier) const {
     return true;
 }
 
-char terrain::getCase(const Point& position) const {
-    if (d_grille.empty() || d_grille[0].empty()) {
+bool terrain::getCase(const Point& position) const {
+    if (d_grille.empty() ) {
         cerr << "Erreur : le terrain est vide." << endl;
-        return '#';
+        return true ;
     }
 
     int x = position.getX();
     int y = position.getY();
-    if (x >= 0 && x < d_hauteur && y >= 0 && y < d_largeur) {
+    if (x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur) {
         return d_grille[x][y];
     }
-    return '#'; // Retourne un mur si hors limites
+ 
+   return false ;// Retourne un mur si hors limites
 }
 
-void terrain::setCase(const Point& position, char valeur) {
+void terrain::setCase(const Point& position,bool valeur) {
     if (d_grille.empty() || d_grille[0].empty()) {
         cerr << "Erreur : le terrain est vide, impossible de définir une case." << endl;
         return;
@@ -180,5 +181,5 @@ bool terrain::estAccessible(const Point& position) const {
 
     int x = position.getX();
     int y = position.getY();
-    return x >= 0 && x < d_hauteur && y >= 0 && y < d_largeur && d_grille[x][y] != '#';
+    return x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur && !d_grille[x][y] ;
 }
