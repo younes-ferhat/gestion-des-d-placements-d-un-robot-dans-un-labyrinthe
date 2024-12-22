@@ -78,7 +78,7 @@ bool terrain::getCase(const Point& position) const {
    return false ;// Retourne un mur si hors limites
 }
 
-void terrain::setCase(const Point& position, char valeur) {
+void terrain::setCase(const Point& position,bool valeur) {
     if (d_grille.empty() || d_grille[0].empty()) {
         cerr << "Erreur : le terrain est vide, impossible de définir une case." << endl;
         return;
