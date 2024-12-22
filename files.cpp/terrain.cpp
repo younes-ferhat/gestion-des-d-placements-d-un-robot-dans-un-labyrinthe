@@ -71,8 +71,8 @@ bool terrain::getCase(const Point& position) const {
 
     int x = position.getX();
     int y = position.getY();
-    if (x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur) {
-        return d_grille[x][y];
+    if (x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur ) {
+        return d_grille[y][x] ;
     }
  
    return false ;// Retourne un mur si hors limites
@@ -86,8 +86,8 @@ void terrain::setCase(const Point& position,bool valeur) {
 
     int x = position.getX();
     int y = position.getY();
-    if (x >= 0 && x < d_hauteur && y >= 0 && y < d_largeur) {
-        d_grille[x][y] = valeur;
+    if (x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur ) {
+        d_grille[y][x] = valeur;
     }
 }
 
@@ -97,7 +97,7 @@ void terrain::setCaseDepart(const Point& position) {
 }
 
 void terrain::setCaseArrivee(const Point& position) {
-    setCase(position, 'E');
+    //setCase(position, 'E');
     caseArrivee = position;
 }
 
@@ -174,12 +174,12 @@ void terrain::afficherModeTexteAmeliore2() const {
 }
 
 bool terrain::estAccessible(const Point& position) const {
-    if (d_grille.empty() || d_grille[0].empty()) {
+    if (d_grille.empty() ) {
         cerr << "Erreur : le terrain est vide." << endl;
         return false;
     }
 
     int x = position.getX();
     int y = position.getY();
-    return x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur && !d_grille[x][y] ;
+    return x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur && !d_grille[y][x] ;
 }
