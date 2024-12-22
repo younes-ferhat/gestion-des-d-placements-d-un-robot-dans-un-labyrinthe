@@ -1,23 +1,24 @@
-#ifndef MAINDROITE_H
-#define MAINDROITE_H
+#ifndef ALGOMAINEDROITE_H
+#define ALGOMAINEDROITE_H
 
 #include "../headers/Robot.h"
-#include "../headers/Terrain.h"
+#include "../headers/terrain.h"
 
-class MainDroite {
+class mainDroite {
 private:
-    Robot d_robot;            // Robot utilisé pour le labyrinthe
-    const terrain& d_terrain; // Référence au terrain
-    bool estSorti;            // Indique si le robot est sorti
+    Robot robotActuel;               // Robot utilisé dans le labyrinthe
+    const terrain& labyrinthe;       // Référence au labyrinthe
+    bool sortieTrouvee;              // Indique si le robot a trouvé la sortie
 
-    void tournerDroite();     // Gérer la rotation à droite
-    void tournerGauche();     // Gérer la rotation à gauche
-    void avancer();           // Déplacer le robot en avant
+    void tournerVersDroite();
+    void tournerVersGauche();
+    void avancerSiPossible();
+    bool positionSortieAtteinte() const;
 
 public:
-    MainDroite(const Robot& robot, const terrain& terrain);
-    void resoudre();          // Algorithme de la main droite
-    bool sortieAtteinte() const; // Vérifie si la sortie est atteinte
+    mainDroite(const Robot& robot, const terrain& terrain);
+    void executer();
+    bool estSorti() const;
 };
 
-#endif
+#endif // ALGOMAINEDROITE_H
