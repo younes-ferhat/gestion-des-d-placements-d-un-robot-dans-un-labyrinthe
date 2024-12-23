@@ -6,22 +6,13 @@
 using namespace std;
 
 terrain::terrain() : d_grille{} {}
-terrain::terrain() : d_grille{} {}
 
 terrain::terrain(int d_largeur, int d_hauteur) : d_largeur(d_largeur), d_hauteur(d_hauteur) {
     d_grille.resize(d_hauteur, vector<bool>(d_largeur, false));
-    d_grille.resize(d_hauteur, vector<bool>(d_largeur, false));
 }
-
-int terrain::getHauteur() const {
 
 int terrain::getHauteur() const {
     return d_hauteur;
-}
-
-int terrain::getLargeur() const {
-    return d_largeur;
-}
 }
 
 int terrain::getLargeur() const {
@@ -45,21 +36,10 @@ bool terrain::chargerDepuisFichier(const string& nomFichier) {
         }
     }
     fichier.close();
-            fichier >> c;
-            d_grille[i][j] = c;
-        }
-    }
-    fichier.close();
     return true;
-}
 }
 
 bool terrain::sauvegarderDansFichier(const string& nomFichier) const {
-    if (d_grille.empty() || d_grille[0].empty()) {
-        cerr << "Erreur : le terrain est vide, impossible de sauvegarder." << endl;
-        return false;
-    }
-
     if (d_grille.empty() || d_grille[0].empty()) {
         cerr << "Erreur : le terrain est vide, impossible de sauvegarder." << endl;
         return false;
@@ -89,21 +69,11 @@ bool terrain::getCase(const Point& position) const {
         return true ;
     }
 
-bool terrain::getCase(const Point& position) const {
-    if (d_grille.empty() ) {
-        cerr << "Erreur : le terrain est vide." << endl;
-        return true ;
-    }
-
     int x = position.getX();
     int y = position.getY();
     if (x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur ) {
         return d_grille[y][x] ;
-    if (x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur ) {
-        return d_grille[y][x] ;
     }
- 
-   return false ;// Retourne un mur si hors limites
  
    return false ;// Retourne un mur si hors limites
 }
@@ -114,16 +84,8 @@ void terrain::setCase(const Point& position,bool valeur) {
         return;
     }
 
-void terrain::setCase(const Point& position,bool valeur) {
-    if (d_grille.empty() || d_grille[0].empty()) {
-        cerr << "Erreur : le terrain est vide, impossible de définir une case." << endl;
-        return;
-    }
-
     int x = position.getX();
     int y = position.getY();
-    if (x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur ) {
-        d_grille[y][x] = valeur;
     if (x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur ) {
         d_grille[y][x] = valeur;
     }
@@ -132,11 +94,9 @@ void terrain::setCase(const Point& position,bool valeur) {
 void terrain::setCaseDepart(const Point& position) {
     setCase(position, 'S');
     caseDepart = position;
-    caseDepart = position;
 }
 
 void terrain::setCaseArrivee(const Point& position) {
-    //setCase(position, 'E');
     //setCase(position, 'E');
     caseArrivee = position;
 }
@@ -155,16 +115,7 @@ void terrain::afficherModeTexteSimple() const {
         return;
     }
 
-    if (d_grille.empty() || d_grille[0].empty()) {
-        std::cout << "Terrain vide." << std::endl;
-        return;
-    }
-
     for (const auto& ligne : d_grille) {
-        for (bool c : ligne) {
-            std::cout << (c ? "X " : ". ");
-        }
-        std::cout << std::endl;
         for (bool c : ligne) {
             std::cout << (c ? "X " : ". ");
         }
@@ -173,11 +124,6 @@ void terrain::afficherModeTexteSimple() const {
 }
 
 void terrain::afficherModeTexteAmeliore1() const {
-    if (d_grille.empty() || d_grille[0].empty()) {
-        std::cout << "Terrain vide." << std::endl;
-        return;
-    }
-
     if (d_grille.empty() || d_grille[0].empty()) {
         std::cout << "Terrain vide." << std::endl;
         return;
@@ -202,11 +148,6 @@ void terrain::afficherModeTexteAmeliore1() const {
 }
 
 void terrain::afficherModeTexteAmeliore2() const {
-    if (d_grille.empty() || d_grille[0].empty()) {
-        std::cout << "Terrain vide." << std::endl;
-        return;
-    }
-
     if (d_grille.empty() || d_grille[0].empty()) {
         std::cout << "Terrain vide." << std::endl;
         return;
@@ -238,45 +179,7 @@ bool terrain::estAccessible(const Point& position) const {
         return false;
     }
 
-    if (d_grille.empty() ) {
-        cerr << "Erreur : le terrain est vide." << endl;
-        return false;
-    }
-
     int x = position.getX();
     int y = position.getY();
     return x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur && !d_grille[y][x] ;
 }
-void terrain::afficherAvecRobot(const Point& robotPosition, Robot::Direction direction) const {
-    if (d_grille.empty() || d_grille[0].empty()) {
-        std::cout << "Terrain vide." << std::endl;
-        return;
-    }
-
-    cout << "┏";
-    for (int i = 0; i < d_largeur; ++i) cout << "━";
-    cout << "┓" << endl;
-
-    for (int y = 0; y < d_hauteur; ++y) {
-        cout << "┃";
-        for (int x = 0; x < d_largeur; ++x) {
-            if (x == robotPosition.getX() && y == robotPosition.getY()) {
-                switch (direction) {
-                    case Robot::NORD: cout << "↑"; break;
-                    case Robot::EST:  cout << "→"; break;
-                    case Robot::SUD:  cout << "↓"; break;
-                    case Robot::OUEST: cout << "←"; break;
-                }
-            } else {
-                if (d_grille[y][x]) cout << "█";
-                else cout << ".";
-            }
-        }
-        cout << "┃" << endl;
-    }
-
-    cout << "┗";
-    for (int i = 0; i < d_largeur; ++i) cout << "━";
-    cout << "┛" << endl;
-}
-
