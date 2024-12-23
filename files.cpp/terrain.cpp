@@ -183,3 +183,35 @@ bool terrain::estAccessible(const Point& position) const {
     int y = position.getY();
     return x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur && !d_grille[y][x] ;
 }
+void terrain::afficherAvecRobot(const Point& robotPosition, Robot::Direction direction) const {
+    if (d_grille.empty() || d_grille[0].empty()) {
+        std::cout << "Terrain vide." << std::endl;
+        return;
+    }
+
+    cout << "┏";
+    for (int i = 0; i < d_largeur; ++i) cout << "━";
+    cout << "┓" << endl;
+
+    for (int y = 0; y < d_hauteur; ++y) {
+        cout << "┃";
+        for (int x = 0; x < d_largeur; ++x) {
+            if (x == robotPosition.getX() && y == robotPosition.getY()) {
+                switch (direction) {
+                    case Robot::NORD: cout << "↑"; break;
+                    case Robot::EST:  cout << "→"; break;
+                    case Robot::SUD:  cout << "↓"; break;
+                    case Robot::OUEST: cout << "←"; break;
+                }
+            } else {
+                if (d_grille[y][x]) cout << "█";
+                else cout << ".";
+            }
+        }
+        cout << "┃" << endl;
+    }
+
+    cout << "┗";
+    for (int i = 0; i < d_largeur; ++i) cout << "━";
+    cout << "┛" << endl;
+}
