@@ -1,4 +1,5 @@
 #include "../headers/terrain.h"
+#include "../headers/Robot.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>

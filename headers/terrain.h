@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include "../headers/Point.h"
-//#include "../headers/Terrain.h"
 
 class terrain {
 private:
@@ -46,6 +45,7 @@ public:
 
     // Vérifier si une position est valide et accessible
     bool estAccessible(const Point& position) const;
+   
 };
 
 #endif // TERRAIN_H
