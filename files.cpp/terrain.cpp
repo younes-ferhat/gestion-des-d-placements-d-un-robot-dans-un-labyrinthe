@@ -26,6 +26,7 @@ bool terrain::chargerDepuisFichier(const string& nomFichier) {
         return false;
     }
 
+    fichier>>caseDepart>>caseArrivee;
     fichier >> d_hauteur >> d_largeur;
     d_grille.resize(d_hauteur, vector<bool>(d_largeur));
     bool c;
@@ -92,7 +93,7 @@ void terrain::setCase(const Point& position,bool valeur) {
 }
 
 void terrain::setCaseDepart(const Point& position) {
-    setCase(position, 'S');
+    //setCase(position, 'S');
     caseDepart = position;
 }
 
