@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include "../headers/Point.h"
-//#include "../headers/Terrain.h"
+#include "../headers/Robot.h"
 
 class terrain {
 private:
@@ -46,6 +46,8 @@ public:
 
     // Vérifier si une position est valide et accessible
     bool estAccessible(const Point& position) const;
+    // Afficher le robot sur le terrain
+    void terrain::afficherAvecRobot(const Point& robotPosition, Robot::Direction direction) const;
 };
 
 #endif // TERRAIN_H
