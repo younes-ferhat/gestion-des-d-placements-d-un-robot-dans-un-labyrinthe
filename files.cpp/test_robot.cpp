@@ -1,4 +1,3 @@
-
 #define DOCTEST_CONFIG_NO_MULTITHREADING
 #include "../headers/doctest.h"
 #include "../headers/Point.h"
@@ -60,7 +59,7 @@ TEST_SUITE("Tests de la classe Robot") {
     TEST_CASE("Test du déplacement devant avec terrain") {
         Point startPos(1,1);
        terrain Terrain {}; 
-       Terrain.chargerDepuisFichier("../terrain/labyrinthe.txt");// Terrain de 5x5
+       Terrain.chargerDepuisFichier("../terrain/labyrintheTest.txt");// Terrain de 5x5
         Robot robot(startPos, Robot::EST);
 
         robot.deplaceDevant();

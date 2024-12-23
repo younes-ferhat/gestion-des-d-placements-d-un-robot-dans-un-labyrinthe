@@ -30,3 +30,38 @@ bool Point::operator==(const Point& p) const
     {
       return (d_x == p.d_x) && (d_y == p.d_y);
     }
+
+
+void Point::print(std::ostream& ost) const
+{
+  ost<<'('<<d_x<<','<<d_y<<')';
+}
+
+void Point::read(std::istream& ist)
+{
+  char c;
+  ist>>c;
+  if (c == '(')
+  {
+    double x;
+    ist>>x>>c;
+    if (c == ',')
+    {
+      double y;
+      ist>>y>>c;
+      if (c == ')') { d_x = x; d_y = y; }
+    }
+  }
+}
+
+std::ostream& operator<<(std::ostream& ost, const Point& p)
+{
+  p.print(ost);
+  return ost;
+}
+
+std::istream& operator>>(std::istream& ist, Point& p)
+{
+  p.read(ist);
+  return ist;
+}

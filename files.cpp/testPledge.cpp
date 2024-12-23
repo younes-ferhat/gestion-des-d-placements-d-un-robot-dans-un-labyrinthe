@@ -12,17 +12,14 @@ TEST_SUITE("Tests de la classe pledge") {
     Robot robot {positionDebut,Robot::EST};
 
     terrain Terrain {};
-     Terrain.chargerDepuisFichier("../terrain/labyrinthe.txt");
-     Terrain.setCaseArrivee( Point {19,14});
-
+     Terrain.chargerDepuisFichier("../terrain/labyrintheTest.txt");
+    
      pledge algo {robot,Terrain};
 
-        algo.resoudre(); 
-        CHECK ( algo.estSortie() == true );
+      algo.resoudre(); 
+      REQUIRE ( algo.estSortie() == true );
+      
        
-
-
-
    }
 
     
