@@ -27,8 +27,8 @@ TEST_CASE("Test de l'algorithme de la main droite") {
     SUBCASE("Déplacement dans un labyrinthe simple sans obstacles") {
         // Réinitialise le terrain et crée un parcours simple sans obstacles
         reinitialiserTerrain(terrainTest);
-        algo.executer();  // Résolution du labyrinthe
-        CHECK(algo.estSorti() == true);  // Vérifie que le robot a bien trouvé la sortie
+        algo.resoudre();  // Résolution du labyrinthe
+        CHECK(algo.estSortie() == true);  // Vérifie que le robot a bien trouvé la sortie
     }
 
     SUBCASE("Labyrinthe avec obstacles autour de la solution") {
@@ -39,8 +39,8 @@ TEST_CASE("Test de l'algorithme de la main droite") {
         terrainTest.setCase(Point(1, 0), '#');  // Ajouter obstacle à gauche
         terrainTest.setCase(Point(0, 1), '#');  // Ajouter obstacle en haut
 
-        algo.executer();  // Résolution du labyrinthe
-        CHECK(algo.estSorti() == true);  // Le robot doit toujours pouvoir sortir malgré les obstacles, puisqu'il suit la main droite
+        algo.resoudre();  // Résolution du labyrinthe
+        CHECK(algo.estSortie() == true);  // Le robot doit toujours pouvoir sortir malgré les obstacles, puisqu'il suit la main droite
     }
 
 
@@ -54,8 +54,8 @@ TEST_CASE("Test de l'algorithme de la main droite") {
     terrainTest.setCase(Point(1, 2), '#');  // Ajoute un mur à droite du robot
 
     // Ce test simule une situation où il y sa des obstacles empêchant une progression directe
-    algo.executer();  // Résolution du labyrinthe par l'algorithme
-    CHECK(algo.estSorti() == true);  // Vérifie que l'algorithme a réussi à sortir
+    algo.resoudre();  // Résolution du labyrinthe par l'algorithme
+    CHECK(algo.estSortie() == true);  // Vérifie que l'algorithme a réussi à sortir
 }
 
 
