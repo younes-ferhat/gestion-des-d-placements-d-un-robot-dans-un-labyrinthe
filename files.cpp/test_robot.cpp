@@ -1,4 +1,4 @@
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+
 #define DOCTEST_CONFIG_NO_MULTITHREADING
 #include "../headers/doctest.h"
 #include "../headers/Point.h"
