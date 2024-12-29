@@ -1,21 +1,25 @@
 #include "../headers/terrain.h"
+#include "../headers/Robot.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
 
 using namespace std;
 
-terrain::terrain() : d_grille {} {}
+terrain::terrain() : d_grille{} {}
+
 
 terrain::terrain(int d_largeur, int d_hauteur) : d_largeur(d_largeur), d_hauteur(d_hauteur) {
-    d_grille.resize(d_hauteur, vector<bool>(d_largeur, '.'));
+    d_grille.resize(d_hauteur, vector<bool>(d_largeur, false));
 }
-  int terrain:: getHauteur() const{
+
+int terrain::getHauteur() const {
     return d_hauteur;
-  }
-  int terrain:: getLargeur()const{
-        return d_largeur;
-    }
+}
+
+int terrain::getLargeur() const {
+    return d_largeur;
+}
 
 bool terrain::chargerDepuisFichier(const string& nomFichier) {
     ifstream fichier(nomFichier);
@@ -24,32 +28,26 @@ bool terrain::chargerDepuisFichier(const string& nomFichier) {
         return false;
     }
 
+    fichier>>caseDepart>>caseArrivee;
     fichier >> d_hauteur >> d_largeur;
     d_grille.resize(d_hauteur, vector<bool>(d_largeur));
     bool c;
     for (int i = 0; i < d_hauteur; ++i) {
         for (int j = 0; j < d_largeur; ++j) {
-            fichier>>c; 
-            d_grille[i][j]=c;
-
-           /* fichier >> d_grille[i][j];
-            if (d_grille[i][j] == 'S') {
-              caseDepart = Point(i, j);}
-               // Conversion en Point
-
-           else if (d_grille[i][j] == 'E') {
-              caseArrivee = Point(i, j); // Conversion en Point */
+            fichier >> c;
+            d_grille[i][j] = c;
+        }
+    }
+    fichier.close();
+    return true;
 }
 
-        }
-        fichier.close();
-    return true;
-
+bool terrain::sauvegarderDansFichier(const string& nomFichier) const {
+    if (d_grille.empty() || d_grille[0].empty()) {
+        cerr << "Erreur : le terrain est vide, impossible de sauvegarder." << endl;
+        return false;
     }
 
-    
-
-bool terrain::sauvegarderDansFichier(const string& nomFichier) const {
     ofstream fichier(nomFichier);
     if (!fichier.is_open()) {
         cerr << "Erreur : impossible d'écrire dans le fichier " << nomFichier << endl;
@@ -68,33 +66,43 @@ bool terrain::sauvegarderDansFichier(const string& nomFichier) const {
     return true;
 }
 
-char terrain::getCase(const Point& position) const {
+bool terrain::getCase(const Point& position) const {
+    if (d_grille.empty() ) {
+        cerr << "Erreur : le terrain est vide." << endl;
+        return true ;
+    }
+
     int x = position.getX();
     int y = position.getY();
-    if (x >= 0 && x < d_hauteur && y >= 0 && y < d_largeur) {
-        return d_grille[x][y];
+    if (x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur ) {
+        return d_grille[y][x] ;
     }
-    return '#'; // Retourne un mur si hors limites
+ 
+   return false ;// Retourne un mur si hors limites
 }
 
-void terrain::setCase(const Point& position, char valeur) {
+void terrain::setCase(const Point& position,bool valeur) {
+    if (d_grille.empty() || d_grille[0].empty()) {
+        cerr << "Erreur : le terrain est vide, impossible de définir une case." << endl;
+        return;
+    }
+
     int x = position.getX();
     int y = position.getY();
-    if (x >= 0 && x < d_hauteur && y >= 0 && y < d_largeur) {
-        d_grille[x][y] = valeur;
+    if (x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur ) {
+        d_grille[y][x] = valeur;
     }
 }
 
 void terrain::setCaseDepart(const Point& position) {
+    //setCase(position, 'S');
     caseDepart = position;
-    setCase(position, 'S');
 }
 
 void terrain::setCaseArrivee(const Point& position) {
+    //setCase(position, 'E');
     caseArrivee = position;
-    setCase(position, 'E');
 }
-
 
 Point terrain::getCaseDepart() const {
     return caseDepart;
@@ -104,25 +112,26 @@ Point terrain::getCaseArrivee() const {
     return caseArrivee;
 }
 
-void terrain::afficherModeTexteSimple() const {
+/* void terrain::afficherModeTexteSimple() const {
+    if (d_grille.empty() || d_grille[0].empty()) {
+        std::cout << "Terrain vide." << std::endl;
+        return;
+    }
+
     for (const auto& ligne : d_grille) {
-        for (char c : ligne) {
-            if (c)
-            {
-            std::cout<<"X "; 
-            }
-            else 
-            {
-               std::cout << ". ";
-            }
-          
-            
+        for (bool c : ligne) {
+            std::cout << (c ? "X " : ". ");
         }
-        cout << endl;
+        std::cout << std::endl;
     }
 }
 
-void terrain::afficherModeTexteAmeliore1() const {
+ void terrain::afficherModeTexteAmeliore1() const {
+    if (d_grille.empty() || d_grille[0].empty()) {
+        std::cout << "Terrain vide." << std::endl;
+        return;
+    }
+
     cout << "+";
     for (int i = 0; i < d_largeur; ++i) cout << "-";
     cout << "+" << endl;
@@ -142,6 +151,11 @@ void terrain::afficherModeTexteAmeliore1() const {
 }
 
 void terrain::afficherModeTexteAmeliore2() const {
+    if (d_grille.empty() || d_grille[0].empty()) {
+        std::cout << "Terrain vide." << std::endl;
+        return;
+    }
+
     cout << "┏";
     for (int i = 0; i < d_largeur; ++i) cout << "━";
     cout << "┓" << endl;
@@ -160,10 +174,15 @@ void terrain::afficherModeTexteAmeliore2() const {
     cout << "┗";
     for (int i = 0; i < d_largeur; ++i) cout << "━";
     cout << "┛" << endl;
-}
+}*/
 
 bool terrain::estAccessible(const Point& position) const {
+    if (d_grille.empty() ) {
+        cerr << "Erreur : le terrain est vide." << endl;
+        return false;
+    }
+
     int x = position.getX();
     int y = position.getY();
-    return x >= 0 && x < d_hauteur && y >= 0 && y < d_largeur && d_grille[x][y] != '#';
+    return x >= 0 && x < d_largeur && y >= 0 && y < d_hauteur && !d_grille[y][x] ;
 }

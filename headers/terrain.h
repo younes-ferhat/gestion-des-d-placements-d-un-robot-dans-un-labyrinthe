@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include "../headers/Point.h"
-//#include "../headers/Terrain.h"
 
 class terrain {
 private:
@@ -30,8 +29,8 @@ public:
     bool sauvegarderDansFichier(const std::string& nomFichier) const;
 
     // Accéder ou modifier une case
-    char getCase(const Point& position) const;
-    void setCase(const Point& position, char valeur);
+    bool getCase(const Point& position) const;
+    void setCase(const Point& position, bool valeur);
 
     // Définir les cases de départ et d'arrivée
     void setCaseDepart(const Point& position);
@@ -46,6 +45,7 @@ public:
 
     // Vérifier si une position est valide et accessible
     bool estAccessible(const Point& position) const;
+   
 };
 
 #endif // TERRAIN_H

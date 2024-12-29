@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+=======
+>>>>>>> younes
 #define DOCTEST_CONFIG_NO_MULTITHREADING
 #include "../headers/doctest.h"
 #include "../headers/Terrain.h"
@@ -12,6 +15,7 @@ TEST_CASE("Test de la classe Terrain")
 
     SUBCASE("Initialisation et lecture du terrain depuis un fichier")
     {
+<<<<<<< HEAD
         // PrÃ©paration : CrÃ©ation d'un fichier de test
         ofstream fichierTest("terrainTest.txt");
         fichierTest << "5 5\n"
@@ -20,16 +24,33 @@ TEST_CASE("Test de la classe Terrain")
                     << "0 1 0 0 0\n"
                     << "0 0 0 0 1\n"
                     << "1 0 0 0 0\n";
+=======
+        // Préparation : Création d'un fichier de test
+        ofstream fichierTest("../terrain/terrainTest.txt");
+        fichierTest << "(0,1)\n" 
+                    << "(3,4)\n"
+                    << "5 5\n"
+                    << "1 1 1 1 1\n"
+                    << "0 0 0 0 1\n"
+                    << "1 1 0 1 1\n"
+                    << "1 0 0 0 0\n"
+                    << "1 1 1 1 1\n";
+>>>>>>> younes
         fichierTest.close();
 
         // Test : Lecture du fichier
         terrain Terrain;
+<<<<<<< HEAD
         bool charge = Terrain.chargerDepuisFichier("terrainTest.txt");
+=======
+        bool charge = Terrain.chargerDepuisFichier("../terrain/terrainTest.txt");
+>>>>>>> younes
         REQUIRE(charge == true);
 
         // Validation des dimensions
         REQUIRE(Terrain.getHauteur() == 5);
         REQUIRE(Terrain.getLargeur() == 5);
+<<<<<<< HEAD
 
         // Validation du contenu (case accessible/inaccessible)
         // REQUIRE(terrain.estAccessible(Point(0, 0)) == false); // Case avec 1
@@ -83,6 +104,16 @@ TEST_CASE("Test de la classe Terrain")
         REQUIRE(Terrain.getCase(depart) == 'S');  // 'S' pour dÃ©part
         REQUIRE(Terrain.getCase(arrivee) == 'E'); // 'E' pour arrivÃ©e
     }
+=======
+        //validation des caseDepart et caseArrivée
+        REQUIRE( Terrain.getCaseDepart() == Point {0,1});
+        REQUIRE( Terrain.getCaseArrivee() == Point {3,4});
+        // Validation du contenu (case accessible/inaccessible)
+        REQUIRE(Terrain.estAccessible(Point(0, 0)) == false); // Case avec 1
+        REQUIRE(Terrain.estAccessible(Point(1, 1)) == true);  // Case avec 0
+    }
+
+>>>>>>> younes
 
     SUBCASE("Affichage du terrain en mode texte")
     {
@@ -92,9 +123,16 @@ TEST_CASE("Test de la classe Terrain")
         Terrain.setCase(Point(2, 2), 1); // Mur
 
         cout << "Affichage simple : " << endl;
+<<<<<<< HEAD
         Terrain.afficherModeTexteSimple();
 
         cout << "Affichage amÃ©liorÃ© : " << endl;
         Terrain.afficherModeTexteAmeliore2();
+=======
+       // Terrain.afficherModeTexteSimple();
+
+        cout << "Affichage amélioré : " << endl;
+        //Terrain.afficherModeTexteAmeliore2();
+>>>>>>> younes
     }
 }
