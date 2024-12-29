@@ -39,9 +39,9 @@ public:
     Point getCaseArrivee() const;
 
     // Afficher le terrain en mode texte
-    void afficherModeTexteSimple() const;
-    void afficherModeTexteAmeliore1() const;
-    void afficherModeTexteAmeliore2() const;
+    // void afficherModeTexteSimple() const;
+    // void afficherModeTexteAmeliore1() const;
+    // void afficherModeTexteAmeliore2() const;
 
     // Vérifier si une position est valide et accessible
     bool estAccessible(const Point& position) const;

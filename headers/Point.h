@@ -8,7 +8,7 @@ private:
 
 public:
     // Constructeur par défaut et avec paramètres
-    Point(int d_x = 0, int d_y = 0);
+    Point(int d_x=0 , int d_y=0);
 
     // Getters
     int getX() const;
