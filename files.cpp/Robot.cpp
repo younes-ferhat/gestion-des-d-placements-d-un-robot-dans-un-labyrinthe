@@ -19,22 +19,22 @@ void Robot::deplaceDevant() {
         case SUD: d_position.move(0, 1); break;
         case OUEST: d_position.move(-1, 0); break;
     }
-    notifyMovement("avancé");
+    // notifyMovement("");
 }
 
 void Robot::tourneGauche() {
     d_direction = static_cast<Direction>((d_direction + 3) % 4);
-    notifyMovement("tourné à gauche");
+    // notifyMovement("tourné à gauche");
 }
 
 void Robot::tourneDroite() {
     d_direction = static_cast<Direction>((d_direction + 1) % 4);
-    notifyMovement("tourné à droite");
+    //notifyMovement("");
 }
 
 void Robot::demiTour() {
     d_direction = static_cast<Direction>((d_direction + 2) % 4); // Inversion de direction
-    notifyMovement("fait un demi-tour");
+    // notifyMovement("fait un demi-tour");
 }
 
 bool Robot::detectObstacle(const terrain& Terrain) {
@@ -74,7 +74,7 @@ bool Robot::detectObstacleDroite(const terrain& Terrain) const {
     // Vérifier si la position est accessible
     return !Terrain.estAccessible(positionDroite);
 }
-void Robot::dessinerRobot(const terrain& Terrain) const {
+/*void Robot::dessinerRobot(const terrain& Terrain) const {
     // Dimensions du terrain
     int hauteur = Terrain.getHauteur();
     int largeur = Terrain.getLargeur();
@@ -114,21 +114,23 @@ void Robot::dessinerRobot(const terrain& Terrain) const {
         }
         std::cout << std::endl;
     }
-}
+}*/
 
-
+char Robot::getDirectionSymbole() const {
+        switch (d_direction) {
+            case NORD: return '^';
+            case EST: return '>';
+            case SUD: return 'v';
+            case OUEST: return '<';
+            default: return '?'; // Au cas où une valeur inattendue apparaît
+        }
+    }
 
 
 void Robot::notifyMovement(const std::string& action) {
-    std::cout << "Robot a " << action
-              << " à la position (" << d_position.getX() << ", " << d_position.getY() << ") en direction ";
-    switch (d_direction) {
-        case NORD: std::cout << "Nord"; break;
-        case EST: std::cout << "Est"; break;
-        case SUD: std::cout << "Sud"; break;
-        case OUEST: std::cout <<"Ouest"; break;
-    }
-    std::cout << "." << std::endl;
+    std::cout << "." <<std::endl;
+  
+    
 }
 
 /* Explication de la méthode demi tour 

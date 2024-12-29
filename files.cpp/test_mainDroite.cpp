@@ -57,7 +57,18 @@ TEST_CASE("Test de l'algorithme de la main droite") {
     algo.executer();  // Résolution du labyrinthe par l'algorithme
     CHECK(algo.estSorti() == true);  // Vérifie que l'algorithme a réussi à sortir
 }
-
-
    
+}
+TEST_CASE("Test de l'algorithme de la main droite avec fichier") {
+    // Terrain chargé depuis un fichier
+    terrain terrainTest;
+    CHECK_NOTHROW(terrainTest.chargerDepuisFichier("../terrain/labyrinthe.txt"));
+
+    Robot robot(Point(0, 0), Robot::Direction::EST); // Robot initialisé à une position arbitraire
+    mainDroite algo(robot, terrainTest);
+
+    SUBCASE("Résolution avec un terrain chargé depuis fichier") {
+        algo.executer();  // Lancer l'algorithme
+        CHECK(algo.estSorti() == true);  // Vérifie que la sortie a été atteinte
+    }
 }

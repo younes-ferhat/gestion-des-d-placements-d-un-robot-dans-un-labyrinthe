@@ -48,9 +48,9 @@ TEST_CASE("Test de la classe Terrain")
         Terrain.setCase(Point(2, 2), 1); // Mur
 
         cout << "Affichage simple : " << endl;
-        Terrain.afficherModeTexteSimple();
+       // Terrain.afficherModeTexteSimple();
 
         cout << "Affichage amélioré : " << endl;
-        Terrain.afficherModeTexteAmeliore2();
+        //Terrain.afficherModeTexteAmeliore2();
     }
 }
