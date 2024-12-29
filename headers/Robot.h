@@ -24,14 +24,15 @@ public:
     bool detectObstacleGauche(const terrain& Terrain) const;
     bool detectObstacleDroite(const terrain& Terrain) const;
     // dessin du robot selon sa position
-    void dessinerRobot(const terrain& Terrain) const;
+    //void dessinerRobot(const terrain& Terrain) const;
 
 
 
 
     // Déplacement vers l'avant
     void deplaceDevant();
-
+    // le symbol de la direction  
+     char getDirectionSymbole() const;
     // Tourner à gauche (90°)
     void tourneGauche();
 
