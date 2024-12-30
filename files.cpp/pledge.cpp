@@ -1,8 +1,6 @@
 #include "../headers/pledge.h"
-pledge::pledge( const Robot &robot , const terrain &Terrain):d_robot {robot} , d_terrain {Terrain} , d_nombreCases {0}
-{
-    //ctor
-}
+pledge::pledge( const Robot &robot , const terrain &Terrain):algorithmeSortie{robot,Terrain}
+{}
 
 pledge::~pledge()
 {
@@ -63,13 +61,3 @@ void pledge::resoudre()
 
 }
 
-bool pledge::estSortie() const 
-{ 
-    return d_robot.getPosition() ==d_terrain.getCaseArrivee() ;
-    return true ; 
-}
-
-int pledge::nombreCases () const 
-{ 
-    return d_nombreCases;
-}
