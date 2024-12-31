@@ -11,7 +11,12 @@ Robot::Direction Robot:: getDirection() const {
     return d_direction;
 }
 
-void Robot::deplaceDevant() {
+void Robot::deplaceDevant(const terrain& Terrain) {
+    if (detectObstacleDevant(Terrain)) {
+        std::cout << "Obstacle détecté, déplacement annulé !\n";
+        return;
+    }
+    else{
     switch (d_direction) {
         case NORD: d_position.move(0, -1); break;
         case EST: d_position.move(1, 0); break;
@@ -19,14 +24,23 @@ void Robot::deplaceDevant() {
         case OUEST: d_position.move(-1, 0); break;
     }
     notifyMovement("avancé");
+    }
 }
 
-void Robot::tourneGauche() {
+void Robot::tourneGauche(const terrain& Terrain) {
+    if (detectObstacleGauche(Terrain)) {
+        std::cout << "Impossible de tourner à gauche, obstacle détecté.\n";
+    }
+    else{
     d_direction = static_cast<Direction>((d_direction + 3) % 4);
     notifyMovement("tourné à gauche");
+    }
 }
 
-void Robot::tourneDroite() {
+void Robot::tourneDroite(const terrain& Terrain) {
+    if (detectObstacleDroite(Terrain)) {
+        std::cout << "Impossible de tourner à droite, obstacle détecté.\n";
+    }
     d_direction = static_cast<Direction>((d_direction + 1) % 4);
     notifyMovement("tourné à droite");
 }

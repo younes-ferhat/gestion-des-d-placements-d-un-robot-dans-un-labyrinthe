@@ -32,13 +32,13 @@ public:
     void ajouterObservateur(Robot* observateur);
      
     // Déplacement vers l'avant
-    void deplaceDevant();
+    void deplaceDevant(const terrain& Terrain);
 
     // Tourner à gauche (90°)
-    void tourneGauche();
+    void tourneGauche(const terrain& Terrain);
 
     // Tourner à droite (90°)
-    void tourneDroite();
+    void tourneDroite(const terrain& Terrain);
 
     // Demi-tour (180°)
     void demiTour();
