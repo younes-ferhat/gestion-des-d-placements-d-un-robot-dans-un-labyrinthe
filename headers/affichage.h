@@ -3,14 +3,14 @@
 
 #include "terrain.h"
 #include "Robot.h"
+#include <windows.h>
+// Classe de Base Affichage
 
-// Classe abstraite Affichage
-// Classe abstraite Affichage
 class Affichage {
 public:
     virtual ~Affichage() = default;
 
-
+    void goto_xy(int x, int y);
     void maj(const terrain &Terrain, const Robot &robot);
     virtual void afficherTerrain(const terrain &Terrain) =0;
 

@@ -4,20 +4,10 @@
 
 
 
-AffichageModeTexteSimple::AffichageModeTexteSimple(const terrain& Terrain, const Robot& robot) {
- /*     system("cls");  // Effacer l'Ã©cran
-    afficherTerrain(Terrain);
-    afficherRobot(robot);
-  goto_xy(Terrain.getLargeur(),Terrain.getHauteur());*/
+AffichageModeTexteSimple::AffichageModeTexteSimple() {
+ 
 }
-void AffichageModeTexteSimple::goto_xy(int x, int y) {
-    HANDLE handle;
-  COORD coordinates;
-  handle = GetStdHandle(STD_OUTPUT_HANDLE);
-  coordinates.X = x;
-  coordinates.Y = y;
-  SetConsoleCursorPosition(handle, coordinates);
-}
+
 void AffichageModeTexteSimple::afficherTerrain(const terrain& Terrain) {
     int hauteur = Terrain.getHauteur();
     int largeur = Terrain.getLargeur();
