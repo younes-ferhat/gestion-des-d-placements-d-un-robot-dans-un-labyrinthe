@@ -40,17 +40,5 @@ TEST_CASE("Test de la classe Terrain")
     }
 
 
-    SUBCASE("Affichage du terrain en mode texte")
-    {
-        terrain Terrain(3, 3);
-        Terrain.setCase(Point(0, 0), 1); // Mur
-        Terrain.setCase(Point(1, 1), 0); // Vide
-        Terrain.setCase(Point(2, 2), 1); // Mur
-
-        cout << "Affichage simple : " << endl;
-       // Terrain.afficherModeTexteSimple();
-
-        cout << "Affichage amélioré : " << endl;
-        //Terrain.afficherModeTexteAmeliore2();
-    }
+    
 }

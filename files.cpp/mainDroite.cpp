@@ -7,20 +7,25 @@ mainDroite::mainDroite(const Robot& robot, const terrain &Terrain)
 
 
 
-void mainDroite::resoudre() {
-    std::cout << "Début de la résolution du labyrinthe avec l'algorithme de la main droite." << std::endl;
+void mainDroite::resoudre( Affichage &affichage) {
+
 
     while (!estSortie()) {
-      
+
         d_robot.tourneDroite();
+        affichage.maj(d_terrain,d_robot);
         if (!d_robot.detectObstacle(d_terrain)) {
             d_robot.deplaceDevant();
+            affichage.maj(d_terrain,d_robot);
         } else {
             d_robot.tourneGauche();
+            affichage.maj(d_terrain,d_robot);
               if (!d_robot.detectObstacle(d_terrain)) {
                d_robot.deplaceDevant();
+               affichage.maj(d_terrain,d_robot);
             } else {
                 d_robot.tourneGauche();
+                affichage.maj(d_terrain,d_robot);
             }
         }
     }

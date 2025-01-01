@@ -10,7 +10,7 @@ class pledge : public algorithmeSortie
 {
     public:
         pledge(const Robot &robot , const terrain &Terrain);
-        void resoudre() override; 
+            void resoudre( Affichage &affichage) override;
         int nombreCases() const ;
        ~pledge();
 

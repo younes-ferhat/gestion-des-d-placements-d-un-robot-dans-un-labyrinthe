@@ -1,7 +1,7 @@
 #ifndef AFFICHAGEMODETEXTESIMPLE_H
 #define AFFICHAGEMODETEXTESIMPLE_H
 
-#include "Affichage.h"
+#include "affichage.h"
 #include <windows.h>
 #include <iostream>
 
@@ -9,15 +9,16 @@
 class AffichageModeTexteSimple : public Affichage
 {
 private:
-    // void goto_xy(int x, int y);
 
-    void afficherTerrain(const terrain &Terrain);
 
 public:
     void goto_xy(int x, int y);
+     void afficherTerrain(const terrain &Terrain) override;
+
     AffichageModeTexteSimple(const terrain &Terrain, const Robot &robot);
     void afficherRobot(const Robot &robot) override;
     void effacerRobot(const Point &anciennePosition) override;
 };
+
 
 #endif // AFFICHAGEMODETEXTESIMPLE_H

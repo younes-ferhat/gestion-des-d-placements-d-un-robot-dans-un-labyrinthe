@@ -45,7 +45,6 @@ bool Robot::detectObstacle(const terrain& Terrain) {
         case SUD: nextPosition.move(0, 1); break;
         case OUEST: nextPosition.move(-1, 0); break;
     }
-    std::cout<< nextPosition.getX() << nextPosition.getY() <<" \n";
     return !Terrain.estAccessible(nextPosition);
 }
 bool Robot::detectObstacleGauche(const terrain& Terrain) const {
