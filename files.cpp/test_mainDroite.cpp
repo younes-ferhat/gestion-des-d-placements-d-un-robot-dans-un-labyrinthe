@@ -75,7 +75,7 @@ TEST_CASE("Test de l'algorithme de la main droite avec fichier") {
     mainDroite algo(robot, terrainTest);
 
     SUBCASE("RÃ©solution avec un terrain chargÃ© depuis fichier") {
-       AffichageModeTexteSimple affichage{terrainTest, robot};
+       AffichageModeTexteSimple affichage{};
 
         //algo.resoudre(affichage);   // Lancer l'algorithme
         //affichage.goto_xy(terrainTest.getLargeur(),terrainTest.getHauteur());

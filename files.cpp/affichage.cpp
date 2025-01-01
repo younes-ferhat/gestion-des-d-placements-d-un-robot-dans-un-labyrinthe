@@ -9,3 +9,12 @@ void Affichage::maj(const terrain &Terrain, const Robot &robot)
     Sleep(500);
 
 }
+
+void Affichage::goto_xy(int x, int y) {
+    HANDLE handle;
+  COORD coordinates;
+  handle = GetStdHandle(STD_OUTPUT_HANDLE);
+  coordinates.X = x;
+  coordinates.Y = y;
+  SetConsoleCursorPosition(handle, coordinates);
+}

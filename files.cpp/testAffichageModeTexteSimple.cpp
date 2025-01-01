@@ -22,7 +22,7 @@ TEST_CASE (" test affichage") {
     Robot robot(monTerrain.getCaseDepart(), Robot::EST);
 
     // CrÃ©er un affichage texte simple
-    AffichageModeTexteSimple affichage{monTerrain, robot};
+    AffichageModeTexteSimple affichage{};
 
 
     affichage.goto_xy(monTerrain.getLargeur(), monTerrain.getHauteur()); // pour placer le cursseur a la fin du labyrinth a la fin

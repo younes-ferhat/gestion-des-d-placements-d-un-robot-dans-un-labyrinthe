@@ -12,10 +12,11 @@ private:
 
 
 public:
-    void goto_xy(int x, int y);
+     
+    AffichageModeTexteSimple();
+    
      void afficherTerrain(const terrain &Terrain) override;
 
-    AffichageModeTexteSimple(const terrain &Terrain, const Robot &robot);
     void afficherRobot(const Robot &robot) override;
     void effacerRobot(const Point &anciennePosition) override;
 };
