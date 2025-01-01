@@ -1,51 +1,28 @@
 #include "../headers/mainDroite.h"
 #include <iostream>
 
-mainDroite::mainDroite(const Robot& robot, const terrain& terrain)
-    : robotActuel(robot), labyrinthe(terrain), sortieTrouvee(false) {}
+mainDroite::mainDroite(const Robot& robot, const terrain &Terrain)
+    : algorithmeSortie{robot,Terrain}
+{}
 
-void mainDroite::tournerVersDroite() {
-    robotActuel.tourneDroite();
-}
 
-void mainDroite::tournerVersGauche() {
-    robotActuel.tourneGauche();
-}
 
-void mainDroite::avancerSiPossible() {
-    if (!robotActuel.detectObstacle(labyrinthe)) {
-        robotActuel.deplaceDevant();
-    }
-}
-
-bool mainDroite::positionSortieAtteinte() const {
-    return robotActuel.getPosition() == labyrinthe.getCaseArrivee();
-}
-
-void mainDroite::executer() {
+void mainDroite::resoudre() {
     std::cout << "Début de la résolution du labyrinthe avec l'algorithme de la main droite." << std::endl;
 
-    while (!sortieTrouvee) {
-        if (positionSortieAtteinte()) {
-            sortieTrouvee = true;
-            std::cout << "Le robot a trouvé la sortie !" << std::endl;
-            return;
-        }
-
-        tournerVersDroite();
-        if (!robotActuel.detectObstacle(labyrinthe)) {
-            avancerSiPossible();
+    while (!estSortie()) {
+      
+        d_robot.tourneDroite();
+        if (!d_robot.detectObstacle(d_terrain)) {
+            d_robot.deplaceDevant();
         } else {
-            tournerVersGauche();
-            if (!robotActuel.detectObstacle(labyrinthe)) {
-                avancerSiPossible();
+            d_robot.tourneGauche();
+              if (!d_robot.detectObstacle(d_terrain)) {
+               d_robot.deplaceDevant();
             } else {
-                tournerVersGauche();
+                d_robot.tourneGauche();
             }
         }
     }
 }
 
-bool mainDroite::estSorti() const {
-    return sortieTrouvee;
-}
