@@ -15,7 +15,7 @@ public:
     void afficherTerrain(const terrain &Terrain) override;
     void afficherRobot(const Robot &robot) override;
     void effacerRobot(const Point &anciennePosition) override;
-    char getDirectionSymbole(const Robot &robot) const;
+    char getDirectionSymbole(const Robot &robot) const override;
 };
 
 #endif // AFFICHAGEMODETEXTESIMPLE_H

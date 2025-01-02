@@ -16,5 +16,6 @@ public:
 
     virtual void afficherRobot(const Robot& robot) = 0;
     virtual void effacerRobot(const Point& anciennePosition) = 0;
+    virtual char getDirectionSymbole(const Robot &robot) const =0;
 };
 #endif  // AFFICHAGE_H
