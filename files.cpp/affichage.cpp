@@ -6,7 +6,7 @@ void Affichage::maj(const terrain &Terrain, const Robot &robot)
     system("cls");
     afficherTerrain(Terrain);
     afficherRobot(robot);
-    Sleep(500);
+    Sleep(200);
 
 }
 

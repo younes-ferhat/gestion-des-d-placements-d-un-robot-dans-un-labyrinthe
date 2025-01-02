@@ -115,16 +115,6 @@ bool Robot::detectObstacleDroite(const terrain& Terrain) const {
     }
 }*/
 
-char Robot::getDirectionSymbole() const {
-        switch (d_direction) {
-            case NORD: return '^';
-            case EST: return '>';
-            case SUD: return 'v';
-            case OUEST: return '<';
-            default: return '?'; // Au cas où une valeur inattendue apparaît
-        }
-    }
-
 
 void Robot::notifyMovement(const std::string& action) {
     std::cout << "." <<std::endl;

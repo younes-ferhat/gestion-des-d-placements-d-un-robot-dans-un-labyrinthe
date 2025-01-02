@@ -31,8 +31,6 @@ public:
 
     // Déplacement vers l'avant
     void deplaceDevant();
-    // le symbol de la direction  
-     char getDirectionSymbole() const;
     // Tourner à gauche (90°)
     void tourneGauche();
 

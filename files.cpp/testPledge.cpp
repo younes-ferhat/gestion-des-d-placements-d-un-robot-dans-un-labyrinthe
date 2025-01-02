@@ -16,9 +16,9 @@ TEST_SUITE("Tests de la classe pledge") {
      pledge algo {robot,Terrain};
       AffichageModeTexteSimple affichage{};
 
-     // algo.resoudre(affichage);
-      //affichage.goto_xy(Terrain.getLargeur(),Terrain.getHauteur());
-      //REQUIRE ( algo.estSortie() == true );
+      algo.resoudre(affichage);
+      affichage.goto_xy(Terrain.getLargeur(),Terrain.getHauteur());
+      REQUIRE ( algo.estSortie() == true );
 
 
    }

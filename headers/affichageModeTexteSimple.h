@@ -8,18 +8,14 @@
 // Classe dérivée AffichageModeTexteSimple
 class AffichageModeTexteSimple : public Affichage
 {
-private:
-
-
 public:
      
     AffichageModeTexteSimple();
     
-     void afficherTerrain(const terrain &Terrain) override;
-
+    void afficherTerrain(const terrain &Terrain) override;
     void afficherRobot(const Robot &robot) override;
     void effacerRobot(const Point &anciennePosition) override;
+    char getDirectionSymbole(const Robot &robot) const;
 };
-
 
 #endif // AFFICHAGEMODETEXTESIMPLE_H
