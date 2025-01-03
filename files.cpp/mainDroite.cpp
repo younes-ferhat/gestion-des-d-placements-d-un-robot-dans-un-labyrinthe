@@ -1,51 +1,32 @@
 #include "../headers/mainDroite.h"
 #include <iostream>
 
-mainDroite::mainDroite(const Robot& robot, const terrain& terrain)
-    : robotActuel(robot), labyrinthe(terrain), sortieTrouvee(false) {}
+mainDroite::mainDroite(const Robot& robot, const terrain &Terrain)
+    : algorithmeSortie{robot,Terrain}
+{}
 
-void mainDroite::tournerVersDroite() {
-    robotActuel.tourneDroite();
-}
 
-void mainDroite::tournerVersGauche() {
-    robotActuel.tourneGauche();
-}
 
-void mainDroite::avancerSiPossible() {
-    if (!robotActuel.detectObstacle(labyrinthe)) {
-        robotActuel.deplaceDevant();
-    }
-}
+void mainDroite::resoudre( Affichage &affichage) {
 
-bool mainDroite::positionSortieAtteinte() const {
-    return robotActuel.getPosition() == labyrinthe.getCaseArrivee();
-}
 
-void mainDroite::executer() {
-    std::cout << "Début de la résolution du labyrinthe avec l'algorithme de la main droite." << std::endl;
+    while (!estSortie()) {
 
-    while (!sortieTrouvee) {
-        if (positionSortieAtteinte()) {
-            sortieTrouvee = true;
-            std::cout << "Le robot a trouvé la sortie !" << std::endl;
-            return;
-        }
-
-        tournerVersDroite();
-        if (!robotActuel.detectObstacle(labyrinthe)) {
-            avancerSiPossible();
+        d_robot.tourneDroite();
+        if (!d_robot.detectObstacle(d_terrain)) {
+            d_robot.deplaceDevant();
+            affichage.maj(d_terrain,d_robot);
         } else {
-            tournerVersGauche();
-            if (!robotActuel.detectObstacle(labyrinthe)) {
-                avancerSiPossible();
+            d_robot.tourneGauche();
+            affichage.maj(d_terrain,d_robot);
+              if (!d_robot.detectObstacle(d_terrain)) {
+               d_robot.deplaceDevant();
+               affichage.maj(d_terrain,d_robot);
             } else {
-                tournerVersGauche();
+                d_robot.tourneGauche();
+                affichage.maj(d_terrain,d_robot);
             }
         }
     }
 }
 
-bool mainDroite::estSorti() const {
-    return sortieTrouvee;
-}

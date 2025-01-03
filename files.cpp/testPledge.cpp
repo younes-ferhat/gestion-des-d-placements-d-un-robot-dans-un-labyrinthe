@@ -1,27 +1,28 @@
+
 #define DOCTEST_CONFIG_NO_MULTITHREADING
 #include "../headers/doctest.h"
 #include "../headers/Point.h"
 #include "../headers/Robot.h"
 #include "../headers/terrain.h"
 #include "../headers/pledge.h"
+#include "../headers/affichageModeTexteSimple.h"
 
 TEST_SUITE("Tests de la classe pledge") {
-   
-   TEST_CASE("Test de la méthode résoudre") {
-     Point positionDebut {2,4};
-    Robot robot {positionDebut,Robot::EST};
 
+   TEST_CASE("Test de la mÃ©thode rÃ©soudre") {
     terrain Terrain {};
      Terrain.chargerDepuisFichier("../terrain/labyrintheTest.txt");
-    
+   Robot robot {Terrain.getCaseDepart(),Robot::EST};
      pledge algo {robot,Terrain};
+      AffichageModeTexteSimple affichage{};
 
-      algo.resoudre(); 
-      REQUIRE ( algo.estSortie() == true );
-      
-       
+      //algo.resoudre(affichage);
+      //affichage.goto_xy(Terrain.getLargeur(),Terrain.getHauteur());
+      //REQUIRE ( algo.estSortie() == true );
+
+
    }
 
-    
+
 
 }

@@ -8,6 +8,7 @@ using namespace std;
 
 terrain::terrain() : d_grille{} {}
 
+
 terrain::terrain(int d_largeur, int d_hauteur) : d_largeur(d_largeur), d_hauteur(d_hauteur) {
     d_grille.resize(d_hauteur, vector<bool>(d_largeur, false));
 }
@@ -111,7 +112,7 @@ Point terrain::getCaseArrivee() const {
     return caseArrivee;
 }
 
-void terrain::afficherModeTexteSimple() const {
+/* void terrain::afficherModeTexteSimple() const {
     if (d_grille.empty() || d_grille[0].empty()) {
         std::cout << "Terrain vide." << std::endl;
         return;
@@ -125,7 +126,7 @@ void terrain::afficherModeTexteSimple() const {
     }
 }
 
-void terrain::afficherModeTexteAmeliore1() const {
+ void terrain::afficherModeTexteAmeliore1() const {
     if (d_grille.empty() || d_grille[0].empty()) {
         std::cout << "Terrain vide." << std::endl;
         return;
@@ -173,7 +174,7 @@ void terrain::afficherModeTexteAmeliore2() const {
     cout << "┗";
     for (int i = 0; i < d_largeur; ++i) cout << "━";
     cout << "┛" << endl;
-}
+}*/
 
 bool terrain::estAccessible(const Point& position) const {
     if (d_grille.empty() ) {
