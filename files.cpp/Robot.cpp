@@ -59,7 +59,7 @@ void Robot::notifierObservateurs(const std::string& action) {
     }
 }
 
-void Robot::deplaceDevant(const terrain& Terrain) {
+void Robot::deplaceDevant() {
    
     switch (d_direction) {
         case NORD: d_position.move(0, -1); break;
@@ -71,14 +71,14 @@ void Robot::deplaceDevant(const terrain& Terrain) {
     
 }
 
-void Robot::tourneGauche(const terrain& Terrain) 
+void Robot::tourneGauche() 
  {
     d_direction = getLeftDirection(d_direction);
     notifierObservateurs("tourné à gauche");
     
 }
 
-void Robot::tourneDroite(const terrain& Terrain) {
+void Robot::tourneDroite() {
   
     d_direction = getRightDirection(d_direction);
     notifierObservateurs("tourné à droite");

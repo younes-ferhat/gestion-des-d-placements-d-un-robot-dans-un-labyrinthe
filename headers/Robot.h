@@ -41,13 +41,13 @@ public:
 
      
     // Déplacement vers l'avant
-    void deplaceDevant(const terrain& Terrain);
+    void deplaceDevant();
 
     // Tourner à gauche (90°)
-    void tourneGauche(const terrain& Terrain);
+    void tourneGauche();
 
     // Tourner à droite (90°)
-    void tourneDroite(const terrain& Terrain);
+    void tourneDroite();
 
     // Demi-tour (180°)
     void demiTour();
