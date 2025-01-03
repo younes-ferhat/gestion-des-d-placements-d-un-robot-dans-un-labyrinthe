@@ -1,4 +1,5 @@
 #include "../headers/ObservateurStatistiques.h"
+#include"../headers/Robot.h"
 #include <iostream>
 
 void ObservateurStatistiques::notifier(const std::string& action, const Robot& robot) {
@@ -23,3 +24,8 @@ void ObservateurStatistiques::notifier(const std::string& action, const Robot& r
 int ObservateurStatistiques::getCompteurDeplacements() const {
     return compteurDeplacements;
 }
+void ObservateurStatistiques::afficherStatistiquesFinales() const {
+    std::cout << "\n--- Statistiques Finales ---\n";
+    std::cout << "Nombre total de déplacements : " << compteurDeplacements << std::endl;
+}
+

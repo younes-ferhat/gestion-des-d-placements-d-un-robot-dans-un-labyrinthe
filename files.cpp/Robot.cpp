@@ -1,5 +1,6 @@
 #include "../headers/Robot.h"
 #include "../headers/terrain.h"
+#include"../headers/ObservateurRobot.h"
 
 Robot::Robot(Point startPosition, Direction startDirection)
     : d_position{startPosition}, d_direction{startDirection} {}

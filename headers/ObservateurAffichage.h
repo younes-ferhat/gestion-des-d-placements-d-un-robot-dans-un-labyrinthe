@@ -1,7 +1,7 @@
 #ifndef OBSERVATEUR_AFFICHAGE_H
 #define OBSERVATEUR_AFFICHAGE_H
 
-#include "../headers/ObservateurRobot.h"
+#include "ObservateurRobot.h"
 #include <iostream>
 
 // Déclaration de la classe ObservateurAffichage

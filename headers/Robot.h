@@ -5,8 +5,9 @@
 #include <iostream>
 #include <vector>
 #include "Point.h"
-#include "ObservateurRobot.h"
+//#include"ObservateurRobot.h"
 #include "terrain.h"
+class ObservateurRobot;
 class Robot {
 public:
     enum Direction { NORD, EST, SUD, OUEST };
@@ -14,7 +15,7 @@ public:
 private:
     Point d_position;           // Position actuelle du robot 
     Direction d_direction;      // Direction actuelle du robot
-    std::vector<ObservateurRobot*> d_observateurs;  // Liste des observateurs
+    std::vector<ObservateurRobot*> d_observateurs;// Liste des observateurs
      // Méthodes pour obtenir la direction suivante
     Point getNextPosition(Direction direction) const;
     Direction getLeftDirection(Direction currentDirection) const;
@@ -34,7 +35,7 @@ public:
     bool detectObstacleDroite(const terrain& Terrain) const;
 
     // Méthodes de gestion des observateurs
-    void ajouterObservateur(ObservateurRobot* observateur);
+    void ajouterObservateur( ObservateurRobot* observateur);
     void notifierObservateurs(const std::string& action);
 
      
