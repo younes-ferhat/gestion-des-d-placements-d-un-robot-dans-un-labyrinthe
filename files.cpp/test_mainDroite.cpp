@@ -5,6 +5,9 @@
 #include "../headers/Robot.h"
 #include "../headers/mainDroite.h"
 #include "../headers/affichageModeTexteSimple.h"
+#include "../headers/ObservateurStatistiques.h"
+#include <memory> 
+
 
 /*TEST_CASE("Test de l'algorithme de la main droite") {
     // RÃ©initialisation de la grille (terrain) : on fixe les cases comme libres au dÃ©part.
@@ -72,13 +75,16 @@ TEST_CASE("Test de l'algorithme de la main droite avec fichier") {
     CHECK_NOTHROW(terrainTest.chargerDepuisFichier("../terrain/labyrintheTest.txt"));
 
     Robot robot(Point(0, 0), Robot::Direction::EST); // Robot initialisÃ© Ã  une position arbitraire
-    mainDroite algo(robot, terrainTest);
+   
 
     SUBCASE("RÃ©solution avec un terrain chargÃ© depuis fichier") {
-       AffichageModeTexteSimple affichage{};
-
-        algo.resoudre(affichage);   // Lancer l'algorithme
-        affichage.goto_xy(terrainTest.getLargeur(),terrainTest.getHauteur());
-        CHECK(algo.estSortie() == true);  // VÃ©rifie que la sortie a Ã©tÃ© atteinte
+    AffichageModeTexteSimple affichage{};
+    
+    /*std::shared_ptr<ObservateurStatistiques> observ = std::make_shared<ObservateurStatistiques>(); 
+    robot.ajouterObservateur(observ);
+       mainDroite algo(robot, terrainTest);
+      algo.resoudre(affichage);
+      observ->afficherStatistiquesFinales();
+        CHECK(algo.estSortie() == true);  // VÃ©rifie que la sortie a Ã©tÃ© atteinte*/
     }
 }

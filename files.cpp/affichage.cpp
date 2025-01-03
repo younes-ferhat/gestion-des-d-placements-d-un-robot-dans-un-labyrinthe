@@ -6,8 +6,8 @@ void Affichage::maj(const terrain &Terrain, const Robot &robot)
     system("cls");
     afficherTerrain(Terrain);
     afficherRobot(robot);
-    Sleep(200);
-
+    Sleep(500);
+    goto_xy(0,Terrain.getHauteur()+3);
 }
 
 void Affichage::goto_xy(int x, int y) {

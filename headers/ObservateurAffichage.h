@@ -3,7 +3,7 @@
 
 #include "ObservateurRobot.h"
 #include <iostream>
-
+#include "Robot.h"
 // Déclaration de la classe ObservateurAffichage
 class ObservateurAffichage : public ObservateurRobot {
 public:

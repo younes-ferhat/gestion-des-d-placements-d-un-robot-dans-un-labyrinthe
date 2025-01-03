@@ -14,7 +14,7 @@ TEST_CASE("Test de la classe Terrain")
         // Préparation : Création d'un fichier de test
         ofstream fichierTest("../terrain/terrainTest.txt");
         fichierTest << "(0,1)\n" 
-                    << "(3,4)\n"
+                    << "(4,3)\n"
                     << "5 5\n"
                     << "1 1 1 1 1\n"
                     << "0 0 0 0 1\n"
@@ -33,7 +33,7 @@ TEST_CASE("Test de la classe Terrain")
         REQUIRE(Terrain.getLargeur() == 5);
         //validation des caseDepart et caseArrivée
         REQUIRE( Terrain.getCaseDepart() == Point {0,1});
-        REQUIRE( Terrain.getCaseArrivee() == Point {3,4});
+        REQUIRE( Terrain.getCaseArrivee() == Point {4,3});
         // Validation du contenu (case accessible/inaccessible)
         REQUIRE(Terrain.estAccessible(Point(0, 0)) == false); // Case avec 1
         REQUIRE(Terrain.estAccessible(Point(1, 1)) == true);  // Case avec 0

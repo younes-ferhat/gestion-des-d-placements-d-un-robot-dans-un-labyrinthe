@@ -1,8 +1,8 @@
 #include "../headers/ObservateurStatistiques.h"
-#include"../headers/Robot.h"
 #include <iostream>
-
-void ObservateurStatistiques::notifier(const std::string& action, const Robot& robot) {
+ObservateurStatistiques::ObservateurStatistiques () 
+{}
+void ObservateurStatistiques::notifier(const std::string& action, const Robot& robot ) {
     compteurDeplacements++;
 
     Point position = robot.getPosition();
@@ -15,7 +15,7 @@ void ObservateurStatistiques::notifier(const std::string& action, const Robot& r
         case Robot::OUEST: directionStr = "OUEST"; break;
     }
 
-    std::cout << "Statistiques : " << action 
+   std::cout << "Statistiques : " << action 
               << " - Déplacement n°" << compteurDeplacements
               << " - Position : (" << position.getX() << ", " << position.getY() << ")"
               << " - Direction : " << directionStr << "\n";

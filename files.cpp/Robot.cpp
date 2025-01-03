@@ -1,9 +1,8 @@
 #include "../headers/Robot.h"
-#include "../headers/terrain.h"
-#include"../headers/ObservateurRobot.h"
+#include "../headers/ObservateurRobot.h"
 
 Robot::Robot(Point startPosition, Direction startDirection)
-    : d_position{startPosition}, d_direction{startDirection} {}
+    : d_position{startPosition}, d_direction{startDirection},d_observateurs {} {}
 
 Point Robot:: getPosition() const{
     return d_position;
@@ -48,21 +47,20 @@ bool Robot::detectObstacleDroite(const terrain& Terrain) const {
     return !Terrain.estAccessible(positionDroite);
 }
 
-void Robot::ajouterObservateur(ObservateurRobot* observateur) {
+void Robot::ajouterObservateur(std::shared_ptr<ObservateurRobot> observateur) {
     d_observateurs.push_back(observateur);
 }
 void Robot::notifierObservateurs(const std::string& action) {
-    for (auto* observateur : d_observateurs) {
-        observateur->notifier(action, *this);  // Passe une référence au robot
+    if (d_observateurs.empty()) {
+    std::cerr << "Aucun observateur n'est enregistré pour le robot !" << std::endl;
+}
+   for (auto &observateur : d_observateurs) {
+        observateur->notifier(action,*this);  // Passe une référence au robot
     }
 }
 
 void Robot::deplaceDevant(const terrain& Terrain) {
-    if (detectObstacleDevant(Terrain)) {
-        std::cout << "Obstacle détecté, déplacement annulé !\n";
-        return;
-    }
-    else{
+   
     switch (d_direction) {
         case NORD: d_position.move(0, -1); break;
         case EST: d_position.move(1, 0); break;
@@ -70,25 +68,18 @@ void Robot::deplaceDevant(const terrain& Terrain) {
         case OUEST: d_position.move(-1, 0); break;
     }
     notifierObservateurs("avancé");
-    }
+    
 }
 
-void Robot::tourneGauche(const terrain& Terrain) {
-    if (detectObstacleGauche(Terrain)) {
-        std::cout << "Impossible de tourner à gauche, obstacle détecté.\n";
-        return;
-    }
-    else{
+void Robot::tourneGauche(const terrain& Terrain) 
+ {
     d_direction = getLeftDirection(d_direction);
     notifierObservateurs("tourné à gauche");
-    }
+    
 }
 
 void Robot::tourneDroite(const terrain& Terrain) {
-    if (detectObstacleDroite(Terrain)) {
-        std::cout << "Impossible de tourner à droite, obstacle détecté.\n";
-        return;
-    }
+  
     d_direction = getRightDirection(d_direction);
     notifierObservateurs("tourné à droite");
 }

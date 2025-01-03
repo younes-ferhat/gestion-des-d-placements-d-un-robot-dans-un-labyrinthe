@@ -25,7 +25,7 @@ TEST_CASE (" test affichage") {
     AffichageModeTexteSimple affichage{};
 
 
-    affichage.goto_xy(monTerrain.getLargeur(), monTerrain.getHauteur()); // pour placer le cursseur a la fin du labyrinth a la fin
+   // affichage.goto_xy(monTerrain.getLargeur(), monTerrain.getHauteur()); // pour placer le cursseur a la fin du labyrinth a la fin
 
 
 

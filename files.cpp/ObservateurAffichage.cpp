@@ -1,5 +1,6 @@
 #include "../headers/ObservateurAffichage.h"
-
+#include "../headers/Point.h"
+#include "../headers/Robot.h"
 // Implémentation de la méthode notifier
 void ObservateurAffichage::notifier(const std::string& action, const Robot& robot) {
     Point position = robot.getPosition();
