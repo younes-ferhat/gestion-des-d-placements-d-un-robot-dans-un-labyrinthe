@@ -69,7 +69,7 @@
 TEST_CASE("Test de l'algorithme de la main droite avec fichier") {
     // Terrain chargÃ© depuis un fichier
     terrain terrainTest;
-    CHECK_NOTHROW(terrainTest.chargerDepuisFichier("./terrain/labyrintheTest.txt"));
+    CHECK_NOTHROW(terrainTest.chargerDepuisFichier("../terrain/labyrintheTest.txt"));
 
     Robot robot(Point(0, 0), Robot::Direction::EST); // Robot initialisÃ© Ã  une position arbitraire
     mainDroite algo(robot, terrainTest);
@@ -77,8 +77,8 @@ TEST_CASE("Test de l'algorithme de la main droite avec fichier") {
     SUBCASE("RÃ©solution avec un terrain chargÃ© depuis fichier") {
        AffichageModeTexteSimple affichage{};
 
-        //algo.resoudre(affichage);   // Lancer l'algorithme
-        //affichage.goto_xy(terrainTest.getLargeur(),terrainTest.getHauteur());
-        //CHECK(algo.estSortie() == true);  // VÃ©rifie que la sortie a Ã©tÃ© atteinte
+        algo.resoudre(affichage);   // Lancer l'algorithme
+        affichage.goto_xy(terrainTest.getLargeur(),terrainTest.getHauteur());
+        CHECK(algo.estSortie() == true);  // VÃ©rifie que la sortie a Ã©tÃ© atteinte
     }
 }

@@ -13,7 +13,6 @@ void mainDroite::resoudre( Affichage &affichage) {
     while (!estSortie()) {
 
         d_robot.tourneDroite();
-        affichage.maj(d_terrain,d_robot);
         if (!d_robot.detectObstacle(d_terrain)) {
             d_robot.deplaceDevant();
             affichage.maj(d_terrain,d_robot);
