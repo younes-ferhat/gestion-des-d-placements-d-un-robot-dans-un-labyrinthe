@@ -7,7 +7,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-          // Fichier principal
+                 //"${workspaceFolder}/main.cpp",  // Fichier principal
                 "${workspaceFolder}/files.cpp/*.cpp",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"

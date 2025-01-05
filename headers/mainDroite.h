@@ -8,7 +8,7 @@ class mainDroite : public algorithmeSortie {
 
 public:
     mainDroite(const Robot& robot, const terrain& Terrain);
-        void resoudre( Affichage &affichage) override;
+     void resoudre( Affichage &affichage) override;
 
 };
 
