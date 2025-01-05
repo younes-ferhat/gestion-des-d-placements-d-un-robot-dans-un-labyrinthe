@@ -19,9 +19,9 @@ TEST_SUITE("Tests de la classe pledge") {
       std::shared_ptr<ObservateurStatistiques> observ = std::make_shared<ObservateurStatistiques>(); 
     robot.ajouterObservateur(observ);
        pledge algo(robot, Terrain);
-     // algo.resoudre(affichage);
+      algo.resoudre(affichage);
       observ->afficherStatistiquesFinales();
-//        CHECK(algo.estSortie() == true); 
+      CHECK(algo.estSortie() == true); 
 
 
 

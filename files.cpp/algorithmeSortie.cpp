@@ -1,6 +1,6 @@
 #include "../headers/algorithmeSortie.h"
 
-algorithmeSortie::algorithmeSortie(const Robot &robot, const terrain &Terrain) :d_robot {robot} , d_terrain {Terrain}, d_nombreCases{0}
+algorithmeSortie::algorithmeSortie(const Robot &robot, const terrain &Terrain) :d_robot {robot} , d_terrain {Terrain}
 {
 }
 

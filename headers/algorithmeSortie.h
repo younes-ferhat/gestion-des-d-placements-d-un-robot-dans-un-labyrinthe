@@ -18,6 +18,7 @@ class algorithmeSortie
     protected:
      Robot d_robot ;
      terrain d_terrain ;
-}
+
+};
 
 #endif 

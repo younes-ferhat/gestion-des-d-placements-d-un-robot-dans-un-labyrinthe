@@ -15,7 +15,7 @@ class pledge : public algorithmeSortie
 
  
 
-    private:
+    
     
 };
 
