@@ -3,8 +3,6 @@
 #include <cstdlib>
 
 
-
-
 AffichageModeTexteSimple::AffichageModeTexteSimple() {
  
 }

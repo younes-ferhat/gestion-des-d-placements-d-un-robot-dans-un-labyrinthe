@@ -53,11 +53,12 @@ bool terrain::sauvegarderDansFichier(const string& nomFichier) const {
         cerr << "Erreur : impossible d'écrire dans le fichier " << nomFichier << endl;
         return false;
     }
-
+    fichier<<caseDepart<<'\n';
+    fichier<<caseArrivee<< '\n';
     fichier << d_hauteur << " " << d_largeur << endl;
     for (const auto& ligne : d_grille) {
-        for (char c : ligne) {
-            fichier << c;
+        for (auto c : ligne) {
+            fichier << c<< " ";
         }
         fichier << endl;
     }
