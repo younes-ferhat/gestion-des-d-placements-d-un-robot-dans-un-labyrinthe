@@ -9,7 +9,7 @@
 #include <memory> 
 
 
-/*TEST_CASE("Test de l'algorithme de la main droite") {
+TEST_CASE("Test de l'algorithme de la main droite") {
     // RÃ©initialisation de la grille (terrain) : on fixe les cases comme libres au dÃ©part.
     auto reinitialiserTerrain = [](terrain& t) {
         // Boucle sur chaque case du terrain pour la rÃ©initialiser en '.'
@@ -31,7 +31,7 @@
     SUBCASE("DÃ©placement dans un labyrinthe simple sans obstacles") {
         // RÃ©initialise le terrain et crÃ©e un parcours simple sans obstacles
         reinitialiserTerrain(terrainTest);
-        AffichageModeTexteSimple affichage{terrainTest, robot};
+        AffichageModeTexteSimple affichage{};
 
         algo.resoudre(affichage);  // RÃ©solution du labyrinthe
         CHECK(algo.estSortie() == true);  // VÃ©rifie que le robot a bien trouvÃ© la sortie
@@ -45,7 +45,7 @@
         terrainTest.setCase(Point(1, 0), '#');  // Ajouter obstacle Ã  gauche
         terrainTest.setCase(Point(0, 1), '#');  // Ajouter obstacle en haut
 
-       AffichageModeTexteSimple affichage{terrainTest, robot};
+       AffichageModeTexteSimple affichage{};
 
         algo.resoudre(affichage);  // RÃ©solution du labyrinthe
         CHECK(algo.estSortie() == true);  // Le robot doit toujours pouvoir sortir malgrÃ© les obstacles, puisqu'il suit la main droite
@@ -62,13 +62,13 @@
     terrainTest.setCase(Point(1, 2), '#');  // Ajoute un mur Ã  droite du robot
 
     // Ce test simule une situation oÃ¹ il y sa des obstacles empÃªchant une progression directe
-    AffichageModeTexteSimple affichage{terrainTest, robot};
+    AffichageModeTexteSimple affichage{};
 
-        algo.resoudre(affichage); ;  // RÃ©solution du labyrinthe par l'algorithme
+    algo.resoudre(affichage); ;  // RÃ©solution du labyrinthe par l'algorithme
     CHECK(algo.estSortie() == true);  // VÃ©rifie que l'algorithme a rÃ©ussi Ã  sortir
 }
 
-}*/
+}
 TEST_CASE("Test de l'algorithme de la main droite avec fichier") {
     // Terrain chargÃ© depuis un fichier
     terrain terrainTest;
@@ -80,11 +80,11 @@ TEST_CASE("Test de l'algorithme de la main droite avec fichier") {
     SUBCASE("RÃ©solution avec un terrain chargÃ© depuis fichier") {
     AffichageModeTexteSimple affichage{};
     
-    /*std::shared_ptr<ObservateurStatistiques> observ = std::make_shared<ObservateurStatistiques>(); 
+    std::shared_ptr<ObservateurStatistiques> observ = std::make_shared<ObservateurStatistiques>(); 
     robot.ajouterObservateur(observ);
        mainDroite algo(robot, terrainTest);
       algo.resoudre(affichage);
       observ->afficherStatistiquesFinales();
-        CHECK(algo.estSortie() == true);  // VÃ©rifie que la sortie a Ã©tÃ© atteinte*/
+        CHECK(algo.estSortie() == true);  // VÃ©rifie que la sortie a Ã©tÃ© atteinte
     }
 }
