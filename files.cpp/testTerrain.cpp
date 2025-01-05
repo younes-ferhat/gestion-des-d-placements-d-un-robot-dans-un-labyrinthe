@@ -26,8 +26,8 @@ TEST_CASE("Test de la classe Terrain")
         // Test : Lecture du fichier
         terrain Terrain;
         bool charge = Terrain.chargerDepuisFichier("../terrain/terrainTest.txt");
-        REQUIRE(charge == true);
-
+        REQUIRE(charge == true);  
+       
         // Validation des dimensions
         REQUIRE(Terrain.getHauteur() == 5);
         REQUIRE(Terrain.getLargeur() == 5);
@@ -37,6 +37,24 @@ TEST_CASE("Test de la classe Terrain")
         // Validation du contenu (case accessible/inaccessible)
         REQUIRE(Terrain.estAccessible(Point(0, 0)) == false); // Case avec 1
         REQUIRE(Terrain.estAccessible(Point(1, 1)) == true);  // Case avec 0
+   SUBCASE (" test de suavegarde fichier") {
+         bool sauvergarde = Terrain.sauvegarderDansFichier("../terrain/terrainSauvegarde.txt");
+         REQUIRE(sauvergarde == true);
+         terrain terrainTestSauvegarde {};
+         terrainTestSauvegarde.chargerDepuisFichier("../terrain/terrainSauvegarde.txt");
+
+      
+        // Validation des dimensions
+        REQUIRE(Terrain.getHauteur() == 5);
+        REQUIRE(Terrain.getLargeur() == 5);
+        //validation des caseDepart et caseArrivée
+        REQUIRE( Terrain.getCaseDepart() == Point {0,1});
+        REQUIRE( Terrain.getCaseArrivee() == Point {4,3});
+        // Validation du contenu (case accessible/inaccessible)
+        REQUIRE(Terrain.estAccessible(Point(0, 0)) == false); // Case avec 1
+        REQUIRE(Terrain.estAccessible(Point(1, 1)) == true);  // Case avec 0
+
+   }
     }
 
 
