@@ -20,7 +20,7 @@ void pledge::resoudre( Affichage &affichage)
     {
         d_robot.deplaceDevant() ;
         affichage.maj(d_terrain,d_robot);
-        d_nombreCases++;
+      
          }
     //instruction 2
     //tourner Ã  gauche pour longer le mur Ã  droite ;
@@ -41,7 +41,7 @@ void pledge::resoudre( Affichage &affichage)
         if(!d_robot.detectObstacleDevant(d_terrain))
           {d_robot.deplaceDevant();
            affichage.maj(d_terrain,d_robot);
-        d_nombreCases++;
+        
           }
     }
     else if (!d_robot.detectObstacleDevant(d_terrain))
@@ -49,7 +49,7 @@ void pledge::resoudre( Affichage &affichage)
         // Si un obstacle est devant, tourner Ã  gauche
         d_robot.deplaceDevant();
          affichage.maj(d_terrain,d_robot);
-        d_nombreCases++;
+       
     }
     else
     {
