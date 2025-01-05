@@ -12,14 +12,12 @@ class algorithmeSortie
        virtual  ~algorithmeSortie() =default;
        virtual void resoudre( Affichage &affichage) = 0 ;
         bool estSortie() const ;
-       // int nombreCases() const ;
+
 
 
     protected:
      Robot d_robot ;
      terrain d_terrain ;
-    int d_nombreCases ;
-};
-
+}
 
 #endif 
