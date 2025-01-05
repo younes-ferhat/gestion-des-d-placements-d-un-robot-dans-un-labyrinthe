@@ -113,69 +113,6 @@ Point terrain::getCaseArrivee() const {
     return caseArrivee;
 }
 
-/* void terrain::afficherModeTexteSimple() const {
-    if (d_grille.empty() || d_grille[0].empty()) {
-        std::cout << "Terrain vide." << std::endl;
-        return;
-    }
-
-    for (const auto& ligne : d_grille) {
-        for (bool c : ligne) {
-            std::cout << (c ? "X " : ". ");
-        }
-        std::cout << std::endl;
-    }
-}
-
- void terrain::afficherModeTexteAmeliore1() const {
-    if (d_grille.empty() || d_grille[0].empty()) {
-        std::cout << "Terrain vide." << std::endl;
-        return;
-    }
-
-    cout << "+";
-    for (int i = 0; i < d_largeur; ++i) cout << "-";
-    cout << "+" << endl;
-
-    for (const auto& ligne : d_grille) {
-        cout << "|";
-        for (char c : ligne) {
-            if (c == '#') cout << "#";
-            else cout << c;
-        }
-        cout << "|" << endl;
-    }
-
-    cout << "+";
-    for (int i = 0; i < d_largeur; ++i) cout << "-";
-    cout << "+" << endl;
-}
-
-void terrain::afficherModeTexteAmeliore2() const {
-    if (d_grille.empty() || d_grille[0].empty()) {
-        std::cout << "Terrain vide." << std::endl;
-        return;
-    }
-
-    cout << "┏";
-    for (int i = 0; i < d_largeur; ++i) cout << "━";
-    cout << "┓" << endl;
-
-    for (const auto& ligne : d_grille) {
-        cout << "┃";
-        for (char c : ligne) {
-            if (c == '#') cout << "█";
-            else if (c == 'S') cout << "▷"; // Case départ
-            else if (c == 'E') cout << "★"; // Case arrivée
-            else cout << c;
-        }
-        cout << "┃" << endl;
-    }
-
-    cout << "┗";
-    for (int i = 0; i < d_largeur; ++i) cout << "━";
-    cout << "┛" << endl;
-}*/
 
 bool terrain::estAccessible(const Point& position) const {
     if (d_grille.empty() ) {
